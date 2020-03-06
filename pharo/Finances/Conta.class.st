@@ -17,6 +17,7 @@ Conta class >> newNomeada: aString [
 { #category : #accessors }
 Conta >> nome: aString [ 
 
-	aString ifNil: [ ^ self issueError: 'conta.nome.obrigatorio' ].
+	[ aString isEmptyOrNil ] , 
+	[ aString trimBoth isEmpty ] ifAnyTrue: [ ^ self issueError: 'conta.nome.obrigatorio' ].
 	nome := aString.
 ]
