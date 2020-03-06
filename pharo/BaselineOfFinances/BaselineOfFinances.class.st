@@ -17,10 +17,12 @@ BaselineOfFinances >> baseline: spec [
 											  loads: #(core) ];
 														
 		package: 'Finances';   
-		package: 'Finances-Tests' with: [ spec requires: 'SBDD' ];   
+		package: 'Finances-Tests' with: [ spec requires: 'Finances' ];   
+		package: 'Finances-Features' with: [ spec requires: 'Finances' ];   
 		
 		group: 'default' with: #('core');
 		group: 'core' with: #('Finances');
-		group: 'tests' with: #(core 'Finances-Tests')			
+		group: 'tests' with: #(core 'Finances-Tests');			
+		group: 'features' with: #(core 'Finances-Features')		
 	].
 ]
