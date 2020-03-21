@@ -1,7 +1,7 @@
 "
 Eu como Investidor
-Desejo Investir numa Ação
-E acompanhar a minha rentabilidade com ela
+Desejo Investir em ações
+E acompanhar a rentabilidade obtive entre operacoes de compra e venda.
 "
 Class {
 	#name : #AcompanharAcoesFeature,
@@ -11,6 +11,35 @@ Class {
 	],
 	#category : #'Finances-Features'
 }
+
+{ #category : #scenarios }
+AcompanharAcoesFeature >> Incrementa_investimento_em_uma_acao [
+	<scenarioOutline>
+	^ self
+		scenarioOutline: 'Incrementar investimentos em ações altera o montante, lote em posse e 
+								valor médio das ações de maneira apropriada.'
+			   		  def:  'Dado que tenho "100" ações de "IBOV3" compradas por R$ "10000"
+								Quando compro mais "{loteAdicional}" por "{montanteAdicional}"
+						      Então agora possuo "{qtdAcoesAtual}" acoes no valor médio de R$ "{novoValorMedio}"'
+							
+				examples: 	#( loteAdicional   montanteAdicional  qtdAcoesAtual    novoValorMedio ) asHeaderFor
+							 - #(    100             5000              200                 75        )
+							 - #(    500             20000             600                 50        )
+							 - #(    10              50                150                 67        )
+							
+					  run: [ :qtdAtual :ticker :montanteAtual :loteAdicional 
+								:montanteAdicional :qtdAcoesAtualEsperado :novoValorMedio  | 
+			
+						| acao |
+						
+						acao := (acoes acaoDoTicker: ticker).
+						acao comprar: qtdAtual em: DateAndTime today totalizando: montanteAtual;
+						     comprar: loteAdicional em: DateAndTime today totalizando: montanteAdicional.
+						
+						self assert: acao totalAcoes equals: qtdAcoesAtualEsperado.
+						self assert: acao valorMedio equals: novoValorMedio.
+					]
+]
 
 { #category : #scenarios }
 AcompanharAcoesFeature >> Investir_numa_nova_acao [

@@ -59,6 +59,11 @@ Acao >> ticker: tickerName [
 	ticker := tickerName.
 ]
 
+{ #category : #accessing }
+Acao >> totalAcoes [
+	^ totalAcoes
+]
+
 { #category : #calculations }
 Acao >> valorMedio [
 
