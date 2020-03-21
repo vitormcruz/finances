@@ -17,7 +17,7 @@ BaselineOfFinances >> baseline: spec [
 											  loads: #(core) ];
 														
 		package: 'Finances';   
-		package: 'Finances-Tests' with: [ spec requires: 'Finances' ];   
+		package: 'Finances-Tests' with: [ spec requires: #('Finances') ];   
 		package: 'Finances-Features' with: [ spec requires: 'Finances' ];   
 		
 		group: 'default' with: #('core' 'tests' 'features');
