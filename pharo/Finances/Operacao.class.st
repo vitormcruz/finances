@@ -8,16 +8,17 @@ Class {
 		'valorUnitarioAcao',
 		'initializeOneTimeOnly',
 		'lote',
-		'acao'
+		'acao',
+		'resultado'
 	],
 	#category : #Finances
 }
 
 { #category : #'instance creation' }
-Operacao class >> comLoteDe: lote paraAcaor: aString em: aDate totalizando: anInteger [ 
+Operacao class >> comLoteDe: lote paraAcao: umaAcao em: aDate totalizando: anInteger [ 
 
 	^ super new lote: lote
-					acao: aString
+					acao: umaAcao
 			  	   data: aDate
 				   total: anInteger.
 ]
@@ -46,11 +47,9 @@ Operacao >> id [
 { #category : #initialization }
 Operacao >> initialize [
 
-	initializeOneTimeOnly := [ :initializationBlok |
-		initializationBlok value.
-		initializeOneTimeOnly := [ :initializationBloc | 
-				Error signal: 'Este objeto só pode ser inicializado uma vez, depois disso torna-se imutável' 
-			]
+	initializeOneTimeOnly := [ 
+		initializeOneTimeOnly := [ 
+			Error signal: 'Este objeto só pode ser inicializado uma vez, depois disso torna-se imutável' 		]
 	].
 
 	id := UUID new.
@@ -62,15 +61,30 @@ Operacao >> lote [
 ]
 
 { #category : #'instance initialization' }
-Operacao >> lote: loteInteger acao: aString data: aDate total: montanteInteger [
+Operacao >> lote: loteOperacao acao: umaAcao data: aDate total: montanteInteger [
 
-	initializeOneTimeOnly value: [ 
-		acao := aString.
-		data  := aDate.
-		total := montanteInteger.
-		lote := loteInteger.
-		valorUnitarioAcao := total / lote.
-	]
+	initializeOneTimeOnly value.
+	acao := umaAcao.
+	data  := aDate.
+	total := montanteInteger.
+	lote := loteOperacao.
+	valorUnitarioAcao := total / lote.
+]
+
+{ #category : #accessors }
+Operacao >> resultado [
+	^ resultado.
+]
+
+{ #category : #calculations }
+Operacao >> seCompra: aBlockClosure [ 
+	^ nil.
+]
+
+{ #category : #calculations }
+Operacao >> seVenda: aBlockClosure [ 
+
+	^ nil.
 ]
 
 { #category : #accessing }
