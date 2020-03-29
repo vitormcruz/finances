@@ -71,11 +71,11 @@ AcompanharAcoesFeature >> Vender_totalmente_o_investimento_em_uma_acao [
 	^ self
 		scenarioOutline: 'Ao vender todas as ações préviamente adiquiridas de uma empresa, 
 							  o valor médio da ação vai a zero e um resultado é gerado naquela data'
-			   		  def: 'Dado que comprei "100" ações de "IBOV3" por R$ "1000" a "3" mêses atras
-							  Quando vendo as 100 ações por R$ "{valorAcao}" cada hoje
-						     Então agora possuo "0" acoes com valor médio de R$ "0" e uma operação R$"{resultadoEmReais}" de resultado'
+			   		  def: 'Dado que comprei "100" ações de "BOVA11" por R$ "1000" a "3" mêses atras
+							  Quando vendo hoje as 100 ações por R$ "{valorVenda}"
+							  Então agora possuo "0" acoes com valor médio de R$ "0" e uma operação R$"{resultadoEmReais}" de resultado'
 							
-				examples: 	#(  valorAcao       resultadoEmReais ) asHeaderFor
+				examples: 	#(  valorVenda      resultadoEmReais ) asHeaderFor
 							 - #(    10000               9000       )
 "							 - #(    500             20000             600                 50        )
 							 - #(    10              50                150                 67        )"
@@ -97,7 +97,6 @@ AcompanharAcoesFeature >> Vender_totalmente_o_investimento_em_uma_acao [
 						
 						self assert: acao totalAcoes equals: acoesRestantes.
 						self assert: acao valorMedio equals: novoValorMedio.
-						
 						self assert: operacao resultado equals: resultadoEmReais.
 					]
 ]

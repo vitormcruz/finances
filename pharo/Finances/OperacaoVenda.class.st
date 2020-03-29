@@ -5,10 +5,14 @@ Class {
 }
 
 { #category : #'instance initialization' }
-OperacaoVenda >> lote: loteOPeracao acao: umaAcao data: aDate total: montanteInteger [
+OperacaoVenda >> lote: loteOperacao acao: umaAcao data: aDate total: montanteInteger [
 
-	super lote: loteOPeracao acao: umaAcao data: aDate total: montanteInteger.
-	acao seComprada: [ resultado := montanteInteger - (umaAcao custoMeuLoteDe: loteOPeracao) ].
+	super lote: loteOperacao 
+			acao: umaAcao 
+			data: aDate 
+			total: montanteInteger.
+			
+	acao seComprada: [ resultado := montanteInteger - (umaAcao custoMeuLoteDe: loteOperacao) ].
 
 ]
 

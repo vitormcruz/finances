@@ -22,14 +22,14 @@ OperacaoCompraTest >> testa_inicializa_operacao_compra_com_resultado [
 	| operacaoCompra acao |
 	
 	acao := Acao newParaTicker: 'TESTE'.
-	acao vender: 100 em: DateAndTime today totalizando: 2000.
+	acao vender: 100 em: DateAndTime now totalizando: 3000.
 	
 	operacaoCompra := OperacaoCompra comLoteDe: 100
 	 										  paraAcao: acao
-										     em: DateAndTime today
+										     em: DateAndTime now
 											  totalizando: 1000.
 											
-	self assert: operacaoCompra resultado equals: 1000
+	self assert: operacaoCompra resultado equals: 2000
 ]
 
 { #category : #tests }

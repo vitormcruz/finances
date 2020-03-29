@@ -55,6 +55,11 @@ Operacao >> initialize [
 	id := UUID new.
 ]
 
+{ #category : #'as yet unclassified' }
+Operacao >> isCompra [
+	self shouldBeImplemented.
+]
+
 { #category : #accessing }
 Operacao >> lote [
 	^ lote

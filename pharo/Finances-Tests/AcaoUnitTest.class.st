@@ -4,6 +4,34 @@ Class {
 	#category : #'Finances-Tests'
 }
 
+{ #category : #'tests - inicialização' }
+AcaoUnitTest >> testa_inicializar_acao_comprada [
+
+	| acao |
+	
+	acao := (Acao newParaTicker: 'BOVA11') comprar: 100 
+													  em: DateAndTime now 
+													  totalizando: 1000; 
+				yourself .
+	
+	self assert: acao isComprada.
+	self deny: acao isVendida.
+]
+
+{ #category : #'tests - inicialização' }
+AcaoUnitTest >> testa_inicializar_acao_vendida [
+
+	| acao |
+	
+	acao := (Acao newParaTicker: 'BOVA11') vender: 100 
+													  em: DateAndTime now 
+													  totalizando: 1000;
+				yourself.
+
+	self assert: acao isVendida.	
+	self deny: acao isComprada.
+]
+
 { #category : #'tests - valor medio' }
 AcaoUnitTest >> testa_montanteMedioParaLote_com_valorMedio_diferente_zero [
 	| acao |
@@ -77,7 +105,7 @@ AcaoUnitTest >> testa_ordem_operacoes [
 	self skip.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - comprada/vendida' }
 AcaoUnitTest >> testa_seComprada_apenas_com_operacao_inicial_de_compra [
 	| acao |
 	
@@ -86,7 +114,7 @@ AcaoUnitTest >> testa_seComprada_apenas_com_operacao_inicial_de_compra [
 	self assert: (acao seComprada: [ true ]).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - comprada/vendida' }
 AcaoUnitTest >> testa_seComprada_com_N_operacoes_sendo_a_inicial_de_compra [
 	| acao |
 	
@@ -98,7 +126,7 @@ AcaoUnitTest >> testa_seComprada_com_N_operacoes_sendo_a_inicial_de_compra [
 	self assert: (acao seComprada: [ true ]).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - comprada/vendida' }
 AcaoUnitTest >> testa_seComprada_com_operacao_inicial_de_venda [
 	| acao |
 	
@@ -107,14 +135,14 @@ AcaoUnitTest >> testa_seComprada_com_operacao_inicial_de_venda [
 	self assert: (acao seComprada: [ true ]) equals: nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - comprada/vendida' }
 AcaoUnitTest >> testa_seComprada_sem_operacao [
 
 	self assert: ((Acao newParaTicker: 'TESTE') seComprada: [ true ])
 		  equals: nil.	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - comprada/vendida' }
 AcaoUnitTest >> testa_seVendida_apenas_com_operacao_inicial_de_venda [
 	| acao |
 	
@@ -123,7 +151,7 @@ AcaoUnitTest >> testa_seVendida_apenas_com_operacao_inicial_de_venda [
 	self assert: (acao seVendida: [ true ])
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - comprada/vendida' }
 AcaoUnitTest >> testa_seVendida_com_N_operacoes_sendo_a_inicial_de_venda [
 	| acao |
 	
@@ -134,7 +162,7 @@ AcaoUnitTest >> testa_seVendida_com_N_operacoes_sendo_a_inicial_de_venda [
 	self assert: (acao seVendida: [ true ])
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - comprada/vendida' }
 AcaoUnitTest >> testa_seVendida_com_operacao_inicial_de_compra [
 	| acao |
 	
@@ -143,7 +171,7 @@ AcaoUnitTest >> testa_seVendida_com_operacao_inicial_de_compra [
 	self assert: (acao seVendida: [ true ]) equals: nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'tests - comprada/vendida' }
 AcaoUnitTest >> testa_seVendida_sem_operacao [
 
 	self assert: ((Acao newParaTicker: 'TESTE') seVendida: [ true ])
@@ -170,10 +198,10 @@ AcaoUnitTest >> testa_valorMedio_com_N_operacoes_zerarando_posicao [
 	| acao operacao |
 	
 	acao := AcoesInMemory new acaoDoTicker: 'IBOV3'.
-	acao comprar: 100 em: Date today totalizando: 1000.
-	acao comprar: 100 em: Date today totalizando: 2000.
-	acao comprar: 100 em: Date today totalizando: 3000.
-	operacao := acao vender: 300 em: Date today totalizando: 7000.
+	acao comprar: 100 em: DateAndTime now totalizando: 1000.
+	acao comprar: 100 em: DateAndTime now totalizando: 1000.
+	acao comprar: 100 em: DateAndTime now totalizando: 1000.
+	operacao := acao vender: 300 em: DateAndTime now totalizando: 4000.
 	self assert: acao valorMedio equals: 0.
 	self assert: operacao resultado equals: 1000.
 	

@@ -7,8 +7,12 @@ Class {
 { #category : #'instance initialization' }
 OperacaoCompra >> lote: loteOperacao acao: umaAcao data: aDate total: montanteInteger [
 
-	super lote: loteOperacao acao: umaAcao data: aDate total: montanteInteger.
-	acao seVendida: [ resultado := montanteInteger - (umaAcao custoMeuLoteDe: loteOperacao) ].
+	super lote: loteOperacao 
+			acao: umaAcao 
+			data: aDate 
+			total: montanteInteger.
+			
+	acao seVendida: [ resultado := (umaAcao custoMeuLoteDe: loteOperacao) - montanteInteger ].
 ]
 
 { #category : #calculations }
