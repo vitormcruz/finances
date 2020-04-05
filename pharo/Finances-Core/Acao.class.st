@@ -7,13 +7,13 @@ Class {
 		'totalAcoes',
 		'montanteTotal'
 	],
-	#category : #Finances
+	#category : #'Finances-Core-Finances-Core'
 }
 
 { #category : #testing }
 Acao class >> isAbstract [
 	
-	^ self = AcaoAbstractUnitTest. 
+	^ self = Acao. 
 ]
 
 { #category : #'instance creation' }
@@ -28,39 +28,18 @@ Acao >> << umaOperacao [
 	self subclassResponsibility.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adapting }
 Acao >> adaptTo: acaoClass [
 
 	self class = Acao ifFalse: [ ^ self ].
 	^ self becomeForward: (acaoClass newParaTicker: ticker).
 ]
 
-{ #category : #'as yet unclassified' }
-Acao >> calculaNovoMontanteOperacaoNaoGeradora: umaOperacao [
-
-		self subclassResponsibility.
-]
-
-{ #category : #operacao }
-Acao >> calculaNovoMontanteParaOperacao: umaOperacao [
-
-	(self isTipoOperacaoGeradora: umaOperacao) ifTrue: [ ^ umaOperacao total + montanteTotal  ].
-
-	^ self calculaNovoMontanteOperacaoNaoGeradora: umaOperacao.
-	
-]
-
 { #category : #operacao }
 Acao >> comprar: loteAcoes em: aDate totalizando: montante [
 	
 	self adaptTo: AcaoComprada.
-	^ self nova: OperacaoCompra comLote: loteAcoes em: aDate totalizando: montante.
-]
-
-{ #category : #calculations }
-Acao >> custoMeuLoteDe: anInteger [ 
-
-	^ self valorMedio * anInteger.
+	^ self novaOperacao: Compra comLote: loteAcoes em: aDate totalizando: montante.
 ]
 
 { #category : #calculation }
@@ -77,44 +56,9 @@ Acao >> initialize [
 	totalAcoes := 0.
 ]
 
-{ #category : #tests }
-Acao >> isComprada [
-
-	self subclassResponsibility.
-]
-
-{ #category : #testing }
-Acao >> isTipoOperacaoGeradora: umaOperacao [
-
-	self subclassResponsibility.
-]
-
-{ #category : #tests }
-Acao >> isVendida [
-
-	self subclassResponsibility.
-]
-
 { #category : #accessor }
 Acao >> montanteTotal [
 	^ montanteTotal
-]
-
-{ #category : #operacao }
-Acao >> nova: classeOperacao comLote: loteAcoes em: aDate totalizando: montante [
-
-	| novaOperacao |
-	
-	novaOperacao := classeOperacao comLoteDe: loteAcoes
-											paraAcao: self
-											em: aDate
-											totalizando: montante.
-											
-	operacoes add: novaOperacao.
-	montanteTotal := self calculaNovoMontanteParaOperacao: novaOperacao.
-	totalAcoes := totalAcoes + loteAcoes.
-	
-	^ novaOperacao
 ]
 
 { #category : #operacao }
@@ -190,12 +134,12 @@ Acao >> totalAcoes [
 Acao >> valorMedio [
 
 	totalAcoes = 0 ifTrue: [ ^ 0 ].  
-	^ montanteTotal / totalAcoes.
+	^ (montanteTotal / totalAcoes) abs.
 ]
 
 { #category : #operacao }
 Acao >> vender: loteAcoes em: aDate totalizando: montante [
 
 	self adaptTo: AcaoVendida.
-	^ self nova: OperacaoVenda comLote: loteAcoes em: aDate totalizando: montante.
+	^ self novaOperacao: Venda comLote: loteAcoes em: aDate totalizando: montante.
 ]

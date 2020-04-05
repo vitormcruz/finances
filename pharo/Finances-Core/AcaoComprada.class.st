@@ -1,7 +1,7 @@
 Class {
 	#name : #AcaoComprada,
 	#superclass : #Acao,
-	#category : #Finances
+	#category : #'Finances-Core-Finances-Core'
 }
 
 { #category : #calculation }
@@ -13,37 +13,11 @@ AcaoComprada >> << umaOperacao [
 
 ]
 
-{ #category : #'as yet unclassified' }
-AcaoComprada >> calculaNovoMontanteOperacaoNaoGeradora: umaOperacao [
-
-	^ montanteTotal - (self custoMeuLoteDe: umaOperacao lote).
-]
-
 { #category : #calculation }
 AcaoComprada >> incrementaPosicao: umaOperacao [  
 
 	totalAcoes := totalAcoes + umaOperacao lote.
 	montanteTotal := montanteTotal + umaOperacao total.
-]
-
-{ #category : #tests }
-AcaoComprada >> isComprada [
-
-	^ true.
-]
-
-{ #category : #testing }
-AcaoComprada >> isTipoOperacaoGeradora: umaOPeracao [ 
-
-	umaOPeracao seCompra: [ ^ true ].
-	^ false.
-
-]
-
-{ #category : #tests }
-AcaoComprada >> isVendida [
-
-	^ false.
 ]
 
 { #category : #calculation }

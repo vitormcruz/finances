@@ -4,13 +4,13 @@ Class {
 	#category : #'Finances-Tests'
 }
 
-{ #category : #tests }
+{ #category : #'as yet unclassified' }
 CompraUnitTest >> test_seCompra [
 
 	self assert: (Compra new seCompra: [ true ]).
 ]
 
-{ #category : #tests }
+{ #category : #'as yet unclassified' }
 CompraUnitTest >> test_seVenda [
 
 	self assert: (Compra new seVenda: [ true ])

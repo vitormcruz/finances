@@ -8,35 +8,14 @@ Class {
 		'valorUnitarioAcao',
 		'initializeOneTimeOnly',
 		'lote',
-		'acao',
 		'resultado'
 	],
-	#category : #Finances
+	#category : #'Finances-Core-Finances-Core'
 }
 
 { #category : #'instance creation' }
 Operacao class >> comLoteDe: lote em: aDate totalizando: anInteger [
 	^ super new lote: lote data: aDate total: anInteger
-]
-
-{ #category : #'instance creation' }
-Operacao class >> comLoteDe: lote paraAcao: umaAcao em: aDate totalizando: anInteger [ 
-
-	^ super new lote: lote
-					acao: umaAcao
-			  	   data: aDate
-				   total: anInteger.
-]
-
-{ #category : #'ston-core' }
-Operacao class >> stonAllInstVarNames [
-
-	^ super stonAllInstVarNames asOrderedCollection remove: #initializeOneTimeOnly; yourself.
-]
-
-{ #category : #accessors }
-Operacao >> acao [
-	^ acao
 ]
 
 { #category : #accessing }
@@ -68,17 +47,6 @@ Operacao >> isCompra [
 { #category : #accessing }
 Operacao >> lote [
 	^ lote
-]
-
-{ #category : #'instance initialization' }
-Operacao >> lote: loteOperacao acao: umaAcao data: aDate total: montanteInteger [
-
-	initializeOneTimeOnly value.
-	acao := umaAcao.
-	data  := aDate.
-	total := montanteInteger.
-	lote := loteOperacao.
-	valorUnitarioAcao := total / lote.
 ]
 
 { #category : #'instance initialization' }

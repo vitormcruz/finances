@@ -63,7 +63,9 @@ AcaoVendidaUnitTest >> testa_inicializa_operacao_venda_com_resultado [
 { #category : #tests }
 AcaoVendidaUnitTest >> testa_inicializa_operacao_venda_sem_resultado [
 	| operacaoVenda |
-	
-	operacaoVenda := Venda comLoteDe: 100 em: DateAndTime today totalizando: 1000.
+	operacaoVenda := Venda
+		comLoteDe: 100
+		em: DateAndTime today
+		totalizando: 1000.
 	self assert: operacaoVenda resultado equals: nil
 ]

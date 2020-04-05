@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'nome'
 	],
-	#category : #Finances
+	#category : #'Finances-Core-Finances-Core'
 }
 
 { #category : #'instance creation' }
