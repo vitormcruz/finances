@@ -1,50 +1,70 @@
 Class {
 	#name : #AcaoCompradaUnitTest,
-	#superclass : #AcaoAbstractUnitTest,
+	#superclass : #TestCase,
 	#category : #'Finances-Tests'
 }
 
-{ #category : #'test support' }
-AcaoCompradaUnitTest >> operacaoGeradoraClass [
+{ #category : #tests }
+AcaoCompradaUnitTest >> testa_agregar_operacao_de_compra [
 
-	^ OperacaoCompra
-]
-
-{ #category : #'test support' }
-AcaoCompradaUnitTest >> operacaoNaoGeradoraClass [
-
-	^ OperacaoVenda.
-]
-
-{ #category : #running }
-AcaoCompradaUnitTest >> setUp [
-	"Hooks that subclasses may override to define the fixture of test."
-
+	| acao |
+	
 	acao := AcaoComprada newParaTicker: 'TESTE'.
-	
-]
 
-{ #category : #'as yet unclassified' }
-AcaoCompradaUnitTest >> testa_calculaNovoMontanteOperacao_venda [
-	| acaoComprada montanteCalculado |
-	
-	acaoComprada := AcaoComprada newParaTicker: 'TESTE'.
-	acaoComprada comprar: 100 em: DateAndTime now totalizando: 1000.
-	montanteCalculado := acaoComprada calculaNovoMontanteOperacaoNaoGeradora: (OperacaoVenda comLoteDe: 100
-																														paraAcao: acaoComprada
-																														em: DateAndTime now
-																														totalizando: 2000).
-	self assert: montanteCalculado equals: 0
+	acao << (Compra comLoteDe: 100 em: DateAndTime now totalizando: 2000).
+	acao << (Compra comLoteDe: 200 em: DateAndTime now totalizando: 2000).
+	acao << (Compra comLoteDe: 300 em: DateAndTime now totalizando: 2000).
+		
+	self assert: acao totalAcoes 
+		  equals: 600.
+		
+	self assert: acao montanteTotal 
+		  equals: 6000.
 ]
 
 { #category : #tests }
-AcaoCompradaUnitTest >> testa_isComprada [
+AcaoCompradaUnitTest >> testa_agregar_opercao_de_venda_completa_em_acao_comprada [
 
-	self assert: (AcaoComprada newParaTicker: 'TESTE') isComprada.
+	| acao |
+	
+	acao := AcaoComprada newParaTicker: 'TESTE'.
+
+	acao << (Compra comLoteDe: 100 em: DateAndTime now totalizando: 2000).
+	acao << (Venda comLoteDe: 100 em: DateAndTime now totalizando: 2000).
+
+	self assert: acao montanteTotal equals: 0.
+	self assert: acao totalAcoes equals: 0.
 ]
 
 { #category : #tests }
-AcaoCompradaUnitTest >> testa_isVendida [
+AcaoCompradaUnitTest >> testa_agregar_opercao_de_venda_parcial_em_acao_comprada [
 
-	self deny: (AcaoComprada newParaTicker: 'TESTE') isVendida.
+	| acao |
+	
+	acao := AcaoComprada newParaTicker: 'TESTE'.
+
+	acao << (Compra comLoteDe: 100 em: DateAndTime now totalizando: 2000).
+	acao << (Venda comLoteDe: 50 em: DateAndTime now totalizando: 2000).
+
+	self assert: acao montanteTotal equals: 1000.
+	self assert: acao totalAcoes equals: 50.
+]
+
+{ #category : #tests }
+AcaoCompradaUnitTest >> testa_inicializa_operacao_compra_com_resultado [
+	| operacaoCompra acao |
+	
+	acao := Acao newParaTicker: 'TESTE'.
+	acao vender: 100 em: DateAndTime now totalizando: 3000.
+	
+	operacaoCompra := acao comprar: 100 em: DateAndTime now totalizando: 1000.
+	self assert: operacaoCompra resultado equals: 2000
+]
+
+{ #category : #tests }
+AcaoCompradaUnitTest >> testa_inicializa_operacao_compra_sem_resultado [
+	| operacaoVenda |
+	
+	operacaoVenda := Venda comLoteDe: 100 em: DateAndTime today totalizando: 1000.
+	self assert: operacaoVenda resultado equals: nil
 ]

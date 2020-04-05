@@ -13,6 +13,9 @@ BaselineOfFinances >> baseline: spec [
 		spec blessing: #'baseline';   
 		repository: 'gitlab://vitormcruz/finances';   
 		
+	   baseline: 'Mocketry'
+      with: [ spec repository: 'github://dionisiydk/Mocketry:v6.0.2' ];
+		
  	   baseline: 'SBDD' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
 											  loads: #(core) ];
 														
