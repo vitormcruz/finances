@@ -4,10 +4,26 @@ Class {
 	#category : #Finances
 }
 
+{ #category : #calculation }
+AcaoVendida >> << umaOperacao [ 
+
+	umaOperacao seCompra: [ ^ self realizaPosicao: umaOperacao ].
+	self incrementaPosicao: umaOperacao.
+	
+
+]
+
 { #category : #'as yet unclassified' }
 AcaoVendida >> calculaNovoMontanteOperacaoNaoGeradora: umaOperacao [
 
 		^ montanteTotal - (self custoMeuLoteDe: umaOperacao lote).
+]
+
+{ #category : #calculation }
+AcaoVendida >> incrementaPosicao: umaOperacao [ 
+
+	totalAcoes := totalAcoes + umaOperacao lote.
+	montanteTotal := montanteTotal - umaOperacao total.
 ]
 
 { #category : #tests }
@@ -27,4 +43,12 @@ AcaoVendida >> isTipoOperacaoGeradora: umaOPeracao [
 AcaoVendida >> isVendida [
 
 	^ true.
+]
+
+{ #category : #calculation }
+AcaoVendida >> realizaValor: valorRealizado [
+
+	montanteTotal := montanteTotal + valorRealizado.
+
+	
 ]

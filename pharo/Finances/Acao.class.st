@@ -22,6 +22,12 @@ Acao class >> newParaTicker: ticker [
 	^ super new ticker: ticker.
 ]
 
+{ #category : #calculating }
+Acao >> << umaOperacao [ 
+
+	self subclassResponsibility.
+]
+
 { #category : #'as yet unclassified' }
 Acao >> adaptTo: acaoClass [
 
@@ -57,6 +63,12 @@ Acao >> custoMeuLoteDe: anInteger [
 	^ self valorMedio * anInteger.
 ]
 
+{ #category : #calculation }
+Acao >> incrementaPosicao: umaOperacao [ 
+
+	self subclassResponsibility.
+]
+
 { #category : #initialization }
 Acao >> initialize [ 
 
@@ -83,6 +95,11 @@ Acao >> isVendida [
 	self subclassResponsibility.
 ]
 
+{ #category : #accessor }
+Acao >> montanteTotal [
+	^ montanteTotal
+]
+
 { #category : #operacao }
 Acao >> nova: classeOperacao comLote: loteAcoes em: aDate totalizando: montante [
 
@@ -100,10 +117,41 @@ Acao >> nova: classeOperacao comLote: loteAcoes em: aDate totalizando: montante 
 	^ novaOperacao
 ]
 
+{ #category : #operacao }
+Acao >> novaOperacao: classeOperacao comLote: loteAcoes em: aDate totalizando: montante [
+	| novaOperacao |
+	
+	novaOperacao := classeOperacao comLoteDe: loteAcoes em: aDate totalizando: montante.
+	operacoes add: novaOperacao.
+	self << novaOperacao.
+	^ novaOperacao
+]
+
 { #category : #accessors }
 Acao >> operacoes [
 
 	^ operacoes clone.
+]
+
+{ #category : #calculation }
+Acao >> realizaPosicao: umaOperacao [ 
+
+	| valorMedioAntesAtualizar valorRealizado |
+	
+	valorMedioAntesAtualizar := self valorMedio.
+	valorRealizado := umaOperacao lote * valorMedioAntesAtualizar.
+	umaOperacao realizouResultadoComSeguinteValor: valorRealizado.
+	totalAcoes := totalAcoes - umaOperacao lote.
+	self realizaValor: valorRealizado.
+
+]
+
+{ #category : #calculations }
+Acao >> realizaValor: valorRealizado [
+
+	self subclassResponsibility.
+
+	
 ]
 
 { #category : #calculations }

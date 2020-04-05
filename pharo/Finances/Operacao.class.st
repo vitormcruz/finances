@@ -15,6 +15,11 @@ Class {
 }
 
 { #category : #'instance creation' }
+Operacao class >> comLoteDe: lote em: aDate totalizando: anInteger [
+	^ super new lote: lote data: aDate total: anInteger
+]
+
+{ #category : #'instance creation' }
 Operacao class >> comLoteDe: lote paraAcao: umaAcao em: aDate totalizando: anInteger [ 
 
 	^ super new lote: lote
@@ -74,6 +79,17 @@ Operacao >> lote: loteOperacao acao: umaAcao data: aDate total: montanteInteger 
 	total := montanteInteger.
 	lote := loteOperacao.
 	valorUnitarioAcao := total / lote.
+]
+
+{ #category : #'instance initialization' }
+Operacao >> lote: loteOperacao data: aDate total: montanteInteger [
+
+	initializeOneTimeOnly value.
+	data  := aDate.
+	total := montanteInteger.
+	lote := loteOperacao.
+	valorUnitarioAcao := (total ~= 0) & (lote ~= 0) ifTrue: [ total / lote ]
+																  ifFalse: [ 0 ].
 ]
 
 { #category : #accessors }
