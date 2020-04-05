@@ -19,12 +19,12 @@ BaselineOfFinances >> baseline: spec [
  	   baseline: 'SBDD' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
 											  loads: #(core) ];
 														
-		package: 'Finances';   
-		package: 'Finances-Tests' with: [ spec requires: #('Finances') ];   
-		package: 'Finances-Features' with: [ spec requires: 'Finances' ];   
+		package: 'Finances-Core';   
+		package: 'Finances-Tests' with: [ spec requires: #('Finances-Core') ];   
+		package: 'Finances-Features' with: [ spec requires: 'Finances-Core' ];   
 		
 		group: 'default' with: #('core' 'tests' 'features');
-		group: 'core' with: #('Finances');
+		group: 'core' with: #('Finances-Core');
 		group: 'tests' with: #(core 'Finances-Tests');			
 		group: 'features' with: #(core 'Finances-Features')		
 	].
