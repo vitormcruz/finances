@@ -9,7 +9,12 @@ Venda class >> seCompra: aBlockClosure [
 	^ nil
 ]
 
-{ #category : #calculations }
+{ #category : #testing }
+Venda >> seCompra: aBlockClosure [ 
+	^ nil.
+]
+
+{ #category : #testing }
 Venda >> seVenda: aBlockClosure [ 
 
 	^ aBlockClosure value.

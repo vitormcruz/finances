@@ -18,7 +18,7 @@ Operacao class >> comLoteDe: lote em: aDate totalizando: anInteger [
 	^ super new lote: lote data: aDate total: anInteger
 ]
 
-{ #category : #accessing }
+{ #category : #accessors }
 Operacao >> data [
 	^ data
 ]
@@ -39,12 +39,12 @@ Operacao >> initialize [
 	id := UUID new.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 Operacao >> isCompra [
 	self shouldBeImplemented.
 ]
 
-{ #category : #accessing }
+{ #category : #accessors }
 Operacao >> lote [
 	^ lote
 ]
@@ -65,18 +65,7 @@ Operacao >> resultado [
 	^ resultado.
 ]
 
-{ #category : #calculations }
-Operacao >> seCompra: aBlockClosure [ 
-	^ nil.
-]
-
-{ #category : #calculations }
-Operacao >> seVenda: aBlockClosure [ 
-
-	^ nil.
-]
-
-{ #category : #accessing }
+{ #category : #accessors }
 Operacao >> total [
 	^ total
 ]

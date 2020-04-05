@@ -22,7 +22,7 @@ Acao class >> newParaTicker: ticker [
 	^ super new ticker: ticker.
 ]
 
-{ #category : #calculating }
+{ #category : #'operacao - calcular' }
 Acao >> << umaOperacao [ 
 
 	self subclassResponsibility.
@@ -35,14 +35,14 @@ Acao >> adaptTo: acaoClass [
 	^ self becomeForward: (acaoClass newParaTicker: ticker).
 ]
 
-{ #category : #operacao }
+{ #category : #'operacao - criar' }
 Acao >> comprar: loteAcoes em: aDate totalizando: montante [
 	
 	self adaptTo: AcaoComprada.
 	^ self novaOperacao: Compra comLote: loteAcoes em: aDate totalizando: montante.
 ]
 
-{ #category : #calculation }
+{ #category : #'operacao - calcular' }
 Acao >> incrementaPosicao: umaOperacao [ 
 
 	self subclassResponsibility.
@@ -56,12 +56,12 @@ Acao >> initialize [
 	totalAcoes := 0.
 ]
 
-{ #category : #accessor }
+{ #category : #accessors }
 Acao >> montanteTotal [
 	^ montanteTotal
 ]
 
-{ #category : #operacao }
+{ #category : #'operacao - criar' }
 Acao >> novaOperacao: classeOperacao comLote: loteAcoes em: aDate totalizando: montante [
 	| novaOperacao |
 	
@@ -77,7 +77,7 @@ Acao >> operacoes [
 	^ operacoes clone.
 ]
 
-{ #category : #calculation }
+{ #category : #'operacao - calcular' }
 Acao >> realizaPosicao: umaOperacao [ 
 
 	| valorMedioAntesAtualizar valorRealizado |
@@ -90,7 +90,7 @@ Acao >> realizaPosicao: umaOperacao [
 
 ]
 
-{ #category : #calculations }
+{ #category : #'operacao - calcular' }
 Acao >> realizaValor: valorRealizado [
 
 	self subclassResponsibility.
@@ -98,14 +98,14 @@ Acao >> realizaValor: valorRealizado [
 	
 ]
 
-{ #category : #calculations }
+{ #category : #testing }
 Acao >> seComprada: aBlockClosure [ 
 	
 	operacoes ifEmpty:[ ^ nil ] .
 	^ operacoes first seCompra: aBlockClosure 
 ]
 
-{ #category : #calculations }
+{ #category : #testing }
 Acao >> seVendida: aBlockClosure [ 
 
 	operacoes ifEmpty:[ ^ nil ] .
@@ -119,25 +119,25 @@ Acao >> ticker [
 	^ ticker
 ]
 
-{ #category : #accessing }
+{ #category : #accessors }
 Acao >> ticker: tickerName [
 
 	ticker := tickerName.
 ]
 
-{ #category : #accessing }
+{ #category : #accessors }
 Acao >> totalAcoes [
 	^ totalAcoes
 ]
 
-{ #category : #calculations }
+{ #category : #accessors }
 Acao >> valorMedio [
 
 	totalAcoes = 0 ifTrue: [ ^ 0 ].  
 	^ (montanteTotal / totalAcoes) abs.
 ]
 
-{ #category : #operacao }
+{ #category : #'operacao - criar' }
 Acao >> vender: loteAcoes em: aDate totalizando: montante [
 
 	self adaptTo: AcaoVendida.

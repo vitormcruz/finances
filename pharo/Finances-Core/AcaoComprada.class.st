@@ -4,7 +4,7 @@ Class {
 	#category : #'Finances-Core-Finances-Core'
 }
 
-{ #category : #calculation }
+{ #category : #'operacao - calcular' }
 AcaoComprada >> << umaOperacao [ 
 
 	umaOperacao seCompra: [ ^ self incrementaPosicao: umaOperacao ].
@@ -13,14 +13,14 @@ AcaoComprada >> << umaOperacao [
 
 ]
 
-{ #category : #calculation }
+{ #category : #'operacao - calcular' }
 AcaoComprada >> incrementaPosicao: umaOperacao [  
 
 	totalAcoes := totalAcoes + umaOperacao lote.
 	montanteTotal := montanteTotal + umaOperacao total.
 ]
 
-{ #category : #calculation }
+{ #category : #'operacao - calcular' }
 AcaoComprada >> realizaValor: valorRealizado [
 
 	montanteTotal := montanteTotal - valorRealizado.

@@ -4,13 +4,13 @@ Class {
 	#category : #'Finances-Core-Finances-Core'
 }
 
-{ #category : #calculation }
-Compra >> aplicaOperadorA: aPositiveInteger [ 
-
-	^ aPositiveInteger.
-]
-
-{ #category : #calculations }
+{ #category : #testing }
 Compra >> seCompra: aBlockClosure [ 
 	^ aBlockClosure value.
+]
+
+{ #category : #testing }
+Compra >> seVenda: aBlockClosure [ 
+
+	^ nil.
 ]
