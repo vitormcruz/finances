@@ -25,7 +25,7 @@ AcompanharAcoesFeature >> Incrementa_investimento_em_uma_acao [
 				examples: 	#( loteAdicional   montanteAdicional  qtdAcoesAtual    novoValorMedio ) asHeaderFor
 							 - #(    100             5000              200                 75        )
 							 - #(    500             20000             600                 50        )
-							 - #(    10              50                150                 67        )
+							 - #(    10              2100              110                 110       )
 							
 					  run: [ :qtdAtual :ticker :montanteAtual :loteAdicional 
 								:montanteAdicional :qtdAcoesAtualEsperado :novoValorMedio  | 
@@ -71,14 +71,14 @@ AcompanharAcoesFeature >> Vender_totalmente_o_investimento_em_uma_acao [
 	^ self
 		scenarioOutline: 'Ao vender todas as ações préviamente adiquiridas de uma empresa, 
 							  o valor médio da ação vai a zero e um resultado é gerado naquela data'
-			   		  def: 'Dado que comprei "100" ações de "BOVA11" por R$ "1000" a "3" mêses atras
-							  Quando vendo hoje as 100 ações por R$ "{valorVenda}"
+			   		  def: 'Dado que comprei "100" ações de "BOVA11" por R$ "1000" a "3" mêses atrás
+							  Quando vendo hoje essas 100 ações por R$ "{valorVenda}"
 							  Então agora possuo "0" acoes com valor médio de R$ "0" e uma operação R$"{resultadoEmReais}" de resultado'
 							
 				examples: 	#(  valorVenda      resultadoEmReais ) asHeaderFor
 							 - #(    10000               9000       )
-"							 - #(    500             20000             600                 50        )
-							 - #(    10              50                150                 67        )"
+							 - #(    1000                 0         )
+							 - #(    500                 -500       )
 							
 					  run: [ :qtdAcoesCompradas :ticker :montante :mesesAtras :valorVenda :acoesRestantes 
 							   :novoValorMedio :resultadoEmReais | 
