@@ -16,7 +16,7 @@ BaselineOfFinances >> baseline: spec [
 	   baseline: 'Mocketry'
       with: [ spec repository: 'github://dionisiydk/Mocketry:v6.0.2' ];
 		
- 	   baseline: 'SBDD' with: [ spec repository: 'gitlab://vitormcruz/sandbox-st:develop'; 
+ 	   baseline: 'SBDD' with: [ spec repository: 'gitlab://vitormcruz/sbdd:develop'; 
 											  loads: #(core) ];
 														
 		package: 'Finances-Core';   
