@@ -15,6 +15,9 @@ BaselineOfFinances >> baseline: spec [
 		
 	   baseline: 'Mocketry'
       with: [ spec repository: 'github://dionisiydk/Mocketry:v6.0.2' ];
+
+	   baseline: 'Roassal2';
+    	with: [spec repository: 'github://ObjectProfile/Roassal2/src'];
 		
  	   baseline: 'SBDD' with: [ spec repository: 'gitlab://vitormcruz/sbdd:develop'; 
 											  loads: #(core) ];
