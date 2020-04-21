@@ -29,6 +29,9 @@ VenderAcoesFeature >> Liquidar_parcialmente_açoes_ja_adquiridas [
 							 - #(   100            1000           300  			 	 		0   					3000        )
 							 - #(   100            2000				 300				 	  1000        			3000			)
 							 - #(   200            2000				 200					   0 		        		2000 			)
+							 - #(   100            500				 300					 -500 		        		3000 			)
+							 - #(   300            500				 100					 -2500 	        		1000 			)
+							 - #(   390           10000				 10 					  6100 	        		100 			)
 							
 					  run: [ :qtdAcoesCompradas :ticker :montante :qtdVendida :valorVenda 
 								:qtdRemanescente :valorMedioEsperado :resultadoEmReais :montanteRemanescente | 

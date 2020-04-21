@@ -13,12 +13,12 @@ Class {
 }
 
 { #category : #scenarios }
-ComprarAcoesFeature >> Comprar_mais_acoes_ja_adquiridas_de_empresa [
+ComprarAcoesFeature >> Comprar_mais_acoes_ja_adquiridas_anteriormente [
 	<scenarioOutline>
 	^ self
 		scenarioOutline: 'Incrementar investimentos em ações altera o montante, lote em posse e 
 								valor médio das ações de maneira apropriada.'
-			   		  def:  'Dado que tenho "100" ações de "IBOV3" compradas por R$ "10000"
+			   		  def:  'Dado que tenho "100" ações de "BOVA11" compradas por R$ "10000"
 								Quando compro mais "{loteAdicional}" por "{montanteAdicional}"
 						      Então agora possuo "{qtdAcoesAtual}" acoes no valor médio de R$ "{novoValorMedio}"'
 							
