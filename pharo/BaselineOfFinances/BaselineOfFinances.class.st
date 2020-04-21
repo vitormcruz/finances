@@ -16,7 +16,7 @@ BaselineOfFinances >> baseline: spec [
 	   baseline: 'Mocketry'
       with: [ spec repository: 'github://dionisiydk/Mocketry:v6.0.2' ];
 
-	   baseline: 'Roassal2';
+	   baseline: 'Roassal2'
     	with: [spec repository: 'github://ObjectProfile/Roassal2/src'];
 		
  	   baseline: 'SBDD' with: [ spec repository: 'gitlab://vitormcruz/sbdd:develop'; 
@@ -26,7 +26,7 @@ BaselineOfFinances >> baseline: spec [
 		package: 'Finances-Tests' with: [ spec requires: #('Finances-Core') ];   
 		package: 'Finances-Features' with: [ spec requires: 'Finances-Core' ];   
 		
-		group: 'default' with: #('core' 'tests' 'features');
+		group: 'default' with: #('core' 'tests' 'features' 'Roassal2');
 		group: 'core' with: #('Finances-Core');
 		group: 'tests' with: #(core 'Finances-Tests');			
 		group: 'features' with: #(core 'Finances-Features')		
