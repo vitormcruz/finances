@@ -1,10 +1,10 @@
 "
 Eu como Investidor
-Desejo Investir em ações
-E acompanhar a rentabilidade obtive entre operacoes de compra e venda.
+Desejo realizar operações de venda de ações
+E acompanhar os seus resultados.
 "
 Class {
-	#name : #AcompanharAcoesFeature,
+	#name : #ComprarAcoesFeature,
 	#superclass : #SbddFeature,
 	#instVars : [
 		'acoes'
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #scenarios }
-AcompanharAcoesFeature >> Incrementa_investimento_em_uma_acao [
+ComprarAcoesFeature >> Comprar_mais_acoes_ja_adquiridas_de_empresa [
 	<scenarioOutline>
 	^ self
 		scenarioOutline: 'Incrementar investimentos em ações altera o montante, lote em posse e 
@@ -42,12 +42,13 @@ AcompanharAcoesFeature >> Incrementa_investimento_em_uma_acao [
 ]
 
 { #category : #scenarios }
-AcompanharAcoesFeature >> Investir_numa_nova_acao [
+ComprarAcoesFeature >> Primeira_compra [
 	<scenarioOutline>
 	^ self
-		scenarioOutline: 'O total investido em novas ações dividido pela quantidade comprada é igual ao valor médio de cada ação.'
-			   		  def:  'Quando compro "{lote}" ações de IBOV3 no total de R$ "{montante}" em 12/01/2019
-						      Então nesta operação o valor da ação de "IBOV3" foi de "{valorAcaoOperacao}"
+		scenarioOutline: 'Ao comprar uma ação pela primeira vez, o valor da operação é armazenado e o valor médio 
+							  é esse número dividido pela quantidade (lote) de ações compradas'
+			   		  def:  'Quando compro "{lote}" ações de BOV11 no total de R$ "{montante}" em 12/01/2019
+						      Então nesta operação o valor da ação de "BOV11" foi de "{valorAcaoOperacao}"
 							   E o valor médio dessas ações passa a ser de "{valorMedio}"'
 							
 				examples: 	#(  lote    montante  valorAcaoOperacao    valorMedio) asHeaderFor
@@ -65,46 +66,8 @@ AcompanharAcoesFeature >> Investir_numa_nova_acao [
 					]
 ]
 
-{ #category : #scenarios }
-AcompanharAcoesFeature >> Vender_totalmente_o_investimento_em_uma_acao [
-	<scenarioOutline>
-	^ self
-		scenarioOutline: 'Ao vender todas as ações préviamente adiquiridas de uma empresa, 
-							  o valor médio da ação vai a zero e um resultado é gerado naquela data'
-			   		  def: 'Dado que comprei "100" ações de "BOVA11" por R$ "1000" a "3" mêses atrás
-							  Quando vendo hoje essas 100 ações por R$ "{valorVenda}"
-							  Então agora possuo "0" acoes com valor médio de R$ "0" e uma operação R$"{resultadoEmReais}" de resultado'
-							
-				examples: 	#(  valorVenda      resultadoEmReais ) asHeaderFor
-							 - #(    10000               9000       )
-							 - #(    1000                 0         )
-							 - #(    500                 -500       )
-							
-					  run: [ :qtdAcoesCompradas :ticker :montante :mesesAtras :valorVenda :acoesRestantes 
-							   :novoValorMedio :resultadoEmReais | 
-			
-						| acao hoje operacao |
-						
-						hoje := DateAndTime now.
-						acao := (acoes acaoDoTicker: ticker).
-						acao comprar: qtdAcoesCompradas 
-							  em: hoje - 90 days 
-							  totalizando: montante.
-						
-						operacao := acao vender: qtdAcoesCompradas 
-							  			  	  em: DateAndTime now
-							  				  totalizando: valorVenda.
-						
-						self assert: acao totalAcoes equals: acoesRestantes.
-						self assert: acao valorMedio equals: novoValorMedio.
-						self assert: operacao resultado equals: resultadoEmReais.
-					]
-]
-
 { #category : #running }
-AcompanharAcoesFeature >> setUp [
+ComprarAcoesFeature >> setUp [
 	super setUp.
 	acoes := AcoesInMemory new.
-
-
 ]
