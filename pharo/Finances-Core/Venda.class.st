@@ -1,7 +1,7 @@
 Class {
 	#name : #Venda,
 	#superclass : #Operacao,
-	#category : #'Finances-Core-Finances-Core'
+	#category : #'Finances-Core'
 }
 
 { #category : #test }

@@ -10,7 +10,7 @@ Class {
 		'lote',
 		'resultado'
 	],
-	#category : #'Finances-Core-Finances-Core'
+	#category : #'Finances-Core'
 }
 
 { #category : #'instance creation' }

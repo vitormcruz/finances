@@ -1,7 +1,7 @@
 Class {
 	#name : #AcaoComprada,
 	#superclass : #Acao,
-	#category : #'Finances-Core-Finances-Core'
+	#category : #'Finances-Core'
 }
 
 { #category : #'operacao - calcular' }
