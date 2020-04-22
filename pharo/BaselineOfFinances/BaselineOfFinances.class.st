@@ -28,7 +28,7 @@ BaselineOfFinances >> baseline: spec [
 		
 		group: 'default' with: #('core' 'tests' 'features' 'Roassal2');
 		group: 'core' with: #('Finances-Core');
-		group: 'tests' with: #(core 'Finances-Tests');			
-		group: 'features' with: #(core 'Finances-Features')		
+		group: 'tests' with: #(core 'Mocketry' 'Finances-Tests');			
+		group: 'features' with: #(core 'SBDD' 'Finances-Features')		
 	].
 ]
