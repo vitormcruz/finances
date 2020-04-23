@@ -9,6 +9,12 @@ Venda class >> seCompra: aBlockClosure [
 	^ nil
 ]
 
+{ #category : #acessing }
+Venda >> realizouResultadoComSeguinteValor: anInteger [ 
+
+	resultado := total - anInteger.
+]
+
 { #category : #testing }
 Venda >> seCompra: aBlockClosure [ 
 	^ nil.

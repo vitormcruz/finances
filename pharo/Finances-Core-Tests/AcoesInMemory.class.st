@@ -7,11 +7,11 @@ Class {
 	#category : #'Finances-Core-Tests'
 }
 
-{ #category : #accessing }
-AcoesInMemory >> acaoDoTicker: ticker [
+{ #category : #armazenamento }
+AcoesInMemory >> get: ticker ifAbsentAdd: umaAcao [ 
 
-	^ acoes at: ticker ifAbsentPut: [ Acao newParaTicker: ticker ].
-
+	^ acoes at: ticker 
+			  ifAbsentPut: [ Acao newParaTicker: ticker ].
 ]
 
 { #category : #initialization }

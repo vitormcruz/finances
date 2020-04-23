@@ -60,6 +60,12 @@ Operacao >> lote: loteOperacao data: aDate total: montanteInteger [
 																  ifFalse: [ 0 ].
 ]
 
+{ #category : #acessing }
+Operacao >> realizouResultadoComSeguinteValor: anInteger [ 
+
+	self subclassResponsibility.
+]
+
 { #category : #accessors }
 Operacao >> resultado [
 	^ resultado.

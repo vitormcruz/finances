@@ -4,12 +4,23 @@ Eu sou um repositório de ações.
 Class {
 	#name : #Acoes,
 	#superclass : #Object,
+	#instVars : [
+		'innerDictionary'
+	],
 	#category : #'Finances-Core'
 }
 
 { #category : #accessing }
 Acoes >> acaoDoTicker: ticker [
 
-	self subclassResponsibility.
+	^ self get: ticker 
+		    ifAbsentAdd: (Acao newParaTicker: ticker) 
 
+
+]
+
+{ #category : #armazenamento }
+Acoes >> get: aString ifAbsentAdd: umaAcao [ 
+
+	self subclassResponsibility.
 ]
