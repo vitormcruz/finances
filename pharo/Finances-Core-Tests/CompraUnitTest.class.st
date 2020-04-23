@@ -1,7 +1,7 @@
 Class {
 	#name : #CompraUnitTest,
 	#superclass : #TestCase,
-	#category : #'Finances-Tests'
+	#category : #'Finances-Core-Tests'
 }
 
 { #category : #'as yet unclassified' }

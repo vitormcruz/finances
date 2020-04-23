@@ -1,7 +1,7 @@
 Class {
 	#name : #AcaoUnitTest,
 	#superclass : #TestCase,
-	#category : #'Finances-Tests'
+	#category : #'Finances-Core-Tests'
 }
 
 { #category : #'tests - inicialização' }

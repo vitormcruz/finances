@@ -1,7 +1,7 @@
 Class {
 	#name : #ContaUnitTest,
 	#superclass : #TestCase,
-	#category : #'Finances-Tests'
+	#category : #'Finances-Core-Tests'
 }
 
 { #category : #tests }

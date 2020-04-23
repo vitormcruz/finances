@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'acoes'
 	],
-	#category : #'Finances-Tests-Support'
+	#category : #'Finances-Core-Tests'
 }
 
 { #category : #accessing }
