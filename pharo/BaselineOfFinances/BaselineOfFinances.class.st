@@ -32,7 +32,7 @@ BaselineOfFinances >> baseline: spec [
 											  loads: #(core) ];
 														
 		package: 'Finances-Core' with: [spec requires: #('LangExtensions' 'ValidationNotification')];   
-		package: 'Finances-Tests' with: [ spec requires: #('Finances-Core') ];   
+		package: 'Finances-Core-Tests' with: [ spec requires: #('Finances-Core') ];   
 		package: 'Finances-Features' with: [ spec requires: 'Finances-Core' ];   
 		package: 'Finances-CSV-Adapter' with: [ spec requires: #('Finances-Core' 'NeoCSV') ];   
 		package: 'Finances-Memory-Adapter' with: [ spec requires: #('Finances-Core') ];   
@@ -40,7 +40,7 @@ BaselineOfFinances >> baseline: spec [
 		
 		group: 'default' with: #('core' 'tests' 'features' 'Roassal2' 'Finances-Memory-Adapter' 'Finances-CSV-Adapter');
 		group: 'core' with: #('Finances-Core');
-		group: 'tests' with: #(core 'Mocketry' 'Finances-Tests' 'Finances-CSV-Adapter-Tests');			
+		group: 'tests' with: #(core 'Mocketry' 'Finances-Core-Tests' 'Finances-CSV-Adapter-Tests');			
 		group: 'features' with: #(core 'SBDD' 'Finances-Features');		
 		group: 'external' with: #('Mocketry' 'Roassal2' 'NeoCSV' 'SBDD' 'LangExtensions' 'ValidationNotification')
 	].
