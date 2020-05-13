@@ -7,7 +7,7 @@ Class {
 	#name : #ComprarAcoesFeature,
 	#superclass : #SbddFeature,
 	#instVars : [
-		'acoes'
+		'posicoes'
 	],
 	#category : #'Finances-Features'
 }
@@ -32,7 +32,7 @@ ComprarAcoesFeature >> Comprar_mais_acoes_ja_adquiridas_anteriormente [
 			
 						| acao |
 						
-						acao := (acoes acaoDoTicker: ticker).
+						acao := (posicoes ativaCompradaDoTicker: ticker) ativoFinanceiro.
 						acao comprar: qtdAtual em: DateAndTime today totalizando: montanteAtual;
 						     comprar: loteAdicional em: DateAndTime today totalizando: montanteAdicional.
 						
@@ -59,7 +59,7 @@ ComprarAcoesFeature >> Primeira_compra [
 					  run: [ :lote :montante :ticker :valorAcaoOperacao :valorMedio | 
 						| operacao acao |
 			
-						acao := acoes acaoDoTicker: ticker.
+						acao := (posicoes ativaCompradaDoTicker: ticker) ativoFinanceiro.
 						operacao := acao comprar: lote em: (Date readFrom: '12/01/2019' pattern: 'dd/mm/yyyy') totalizando: montante.
 						self assert: operacao valorUnitarioAcao equals: valorAcaoOperacao.
 						self assert: acao valorMedio equals: valorMedio 
@@ -69,5 +69,5 @@ ComprarAcoesFeature >> Primeira_compra [
 { #category : #running }
 ComprarAcoesFeature >> setUp [
 	super setUp.
-	acoes := AcoesInMemory new.
+	posicoes := PosicoesInMemory new.
 ]

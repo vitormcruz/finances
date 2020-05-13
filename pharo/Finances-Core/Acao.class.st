@@ -31,6 +31,8 @@ Acao >> << umaOperacao [
 { #category : #adapting }
 Acao >> adaptTo: acaoClass [
 
+	<todo: 'remove this'>
+
 	self class = Acao ifFalse: [ ^ self ].
 	^ self becomeForward: (acaoClass newParaTicker: ticker).
 ]
@@ -123,6 +125,12 @@ Acao >> ticker [
 Acao >> ticker: tickerName [
 
 	ticker := tickerName.
+]
+
+{ #category : #accessor }
+Acao >> tipo [
+
+	^ #Acao.
 ]
 
 { #category : #accessors }

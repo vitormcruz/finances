@@ -7,6 +7,13 @@ Class {
 	#category : #'Finances-Memory-Adapter'
 }
 
+{ #category : #adding }
+PosicoesInMemory >> get: aString ifAbsentAdd: umAtivoFinanceiro [ 
+
+	^ innerDictionary at: aString 
+						   ifAbsentPut: umAtivoFinanceiro.
+]
+
 { #category : #initialization }
 PosicoesInMemory >> initialize [ 
 	

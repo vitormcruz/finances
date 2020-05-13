@@ -10,7 +10,7 @@ Class {
 	#category : #'Finances-Core'
 }
 
-{ #category : #accessing }
+{ #category : #accessors }
 Acoes >> acaoDoTicker: ticker [
 
 	^ self get: ticker 

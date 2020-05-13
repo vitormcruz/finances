@@ -7,7 +7,7 @@ Class {
 	#name : #VenderAcoesFeature,
 	#superclass : #SbddFeature,
 	#instVars : [
-		'acoes'
+		'posicoes'
 	],
 	#category : #'Finances-Features'
 }
@@ -39,7 +39,7 @@ VenderAcoesFeature >> Liquidar_parcialmente_açoes_ja_adquiridas [
 						| acao hoje operacao |
 						
 						hoje := DateAndTime now.
-						acao := (acoes acaoDoTicker: ticker).
+						acao := (posicoes ativaCompradaDoTicker: ticker) ativoFinanceiro.
 						acao comprar: qtdAcoesCompradas 
 							  em: hoje - 90 days 
 							  totalizando: montante.
@@ -77,7 +77,7 @@ VenderAcoesFeature >> Liquidar_todas_as_açoes_adquiridas [
 						| acao hoje operacao |
 						
 						hoje := DateAndTime now.
-						acao := (acoes acaoDoTicker: ticker).
+						acao := (posicoes ativaCompradaDoTicker: ticker) ativoFinanceiro.
 						acao comprar: qtdAcoesCompradas 
 							  em: hoje - 90 days 
 							  totalizando: montante.
@@ -95,7 +95,7 @@ VenderAcoesFeature >> Liquidar_todas_as_açoes_adquiridas [
 { #category : #running }
 VenderAcoesFeature >> setUp [
 	super setUp.
-	acoes := AcoesInMemory new.
+	posicoes := PosicoesInMemory new.
 
 
 ]
