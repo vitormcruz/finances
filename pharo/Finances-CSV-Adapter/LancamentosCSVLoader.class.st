@@ -8,6 +8,12 @@ Class {
 	#category : #'Finances-CSV-Adapter'
 }
 
+{ #category : #'instance creation' }
+LancamentosCSVLoader class >> newFor: posicaoRepo [
+
+	^ super new posicaoes: posicaoRepo.
+]
+
 { #category : #initialization }
 LancamentosCSVLoader >> initialize [ 
 
@@ -31,4 +37,10 @@ LancamentosCSVLoader >> loadFromCsvFile: aCSVFileReference [
 					
 		
 
+]
+
+{ #category : #'as yet unclassified' }
+LancamentosCSVLoader >> posicaoes: posicaoRepo [
+
+	posicoes := posicaoRepo.
 ]

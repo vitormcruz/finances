@@ -2,8 +2,7 @@ Class {
 	#name : #Posicao,
 	#superclass : #Object,
 	#instVars : [
-		'ativoFinanceiro',
-		'operacoes'
+		'ativoFinanceiro'
 	],
 	#category : #'Finances-Core'
 }
@@ -14,6 +13,12 @@ Posicao class >> newCompradaTicker: aString [
 	^ PosicaoComprada newParaTiker: aString.
 ]
 
+{ #category : #atualizacao }
+Posicao >> aplica: aLancamento [ 
+
+	self subclassResponsibility.
+]
+
 { #category : #accessors }
 Posicao >> ativoFinanceiro [
 
@@ -22,14 +27,12 @@ Posicao >> ativoFinanceiro [
 
 { #category : #initialization }
 Posicao >> initialize [ 
-
-	operacoes := OrderedCollection new.
 ]
 
 { #category : #acessors }
 Posicao >> operacoes [
 
-	^ operacoes clone.
+	^ ativoFinanceiro operacoes clone.
 ]
 
 { #category : #accessors }
@@ -46,5 +49,11 @@ Posicao >> tipoAtivo [
 
 { #category : #accessors }
 Posicao >> tipoPosicao [
+	self subclassResponsibility.
+]
+
+{ #category : #'resultado financeiro' }
+Posicao >> totalInvestido [
+
 	self subclassResponsibility.
 ]

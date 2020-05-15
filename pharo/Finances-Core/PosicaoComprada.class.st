@@ -11,8 +11,22 @@ PosicaoComprada class >> newParaTiker: aString [
 
 ]
 
+{ #category : #atualizacao }
+PosicaoComprada >> aplica: aLancamento [ 
+
+	ativoFinanceiro comprar: aLancamento quantidade 
+						 em: aLancamento data 
+						 totalizando: aLancamento valor.
+]
+
 { #category : #accessors }
 PosicaoComprada >> tipoPosicao [
 
 	^ #Comprada.
+]
+
+{ #category : #'resultado financeiro' }
+PosicaoComprada >> totalInvestido [
+
+	^ ativoFinanceiro montanteTotal.
 ]

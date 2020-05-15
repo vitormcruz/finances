@@ -39,7 +39,7 @@ VenderAcoesFeature >> Liquidar_parcialmente_açoes_ja_adquiridas [
 						| acao hoje operacao |
 						
 						hoje := DateAndTime now.
-						acao := (posicoes ativaCompradaDoTicker: ticker) ativoFinanceiro.
+						acao := (posicoes ativaDoTicker: ticker eDoTipo: #Comprada) ativoFinanceiro.
 						acao comprar: qtdAcoesCompradas 
 							  em: hoje - 90 days 
 							  totalizando: montante.
@@ -77,7 +77,7 @@ VenderAcoesFeature >> Liquidar_todas_as_açoes_adquiridas [
 						| acao hoje operacao |
 						
 						hoje := DateAndTime now.
-						acao := (posicoes ativaCompradaDoTicker: ticker) ativoFinanceiro.
+						acao := (posicoes ativaDoTicker: ticker eDoTipo: #Comprada) ativoFinanceiro.
 						acao comprar: qtdAcoesCompradas 
 							  em: hoje - 90 days 
 							  totalizando: montante.

@@ -32,7 +32,7 @@ ComprarAcoesFeature >> Comprar_mais_acoes_ja_adquiridas_anteriormente [
 			
 						| acao |
 						
-						acao := (posicoes ativaCompradaDoTicker: ticker) ativoFinanceiro.
+						acao := (posicoes ativaDoTicker: ticker eDoTipo: #Comprada) ativoFinanceiro.
 						acao comprar: qtdAtual em: DateAndTime today totalizando: montanteAtual;
 						     comprar: loteAdicional em: DateAndTime today totalizando: montanteAdicional.
 						
@@ -59,7 +59,7 @@ ComprarAcoesFeature >> Primeira_compra [
 					  run: [ :lote :montante :ticker :valorAcaoOperacao :valorMedio | 
 						| operacao acao |
 			
-						acao := (posicoes ativaCompradaDoTicker: ticker) ativoFinanceiro.
+						acao := (posicoes ativaDoTicker: ticker eDoTipo: #Comprada) ativoFinanceiro.
 						operacao := acao comprar: lote em: (Date readFrom: '12/01/2019' pattern: 'dd/mm/yyyy') totalizando: montante.
 						self assert: operacao valorUnitarioAcao equals: valorAcaoOperacao.
 						self assert: acao valorMedio equals: valorMedio 

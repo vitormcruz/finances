@@ -64,6 +64,12 @@ Lancamento >> ticker [
 	^ ticker
 ]
 
+{ #category : #accessors }
+Lancamento >> tipo [
+	
+	^ #Comprada.
+]
+
 { #category : #accessing }
 Lancamento >> valor [
 	^ valor

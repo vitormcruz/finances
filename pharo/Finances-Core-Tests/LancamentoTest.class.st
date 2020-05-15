@@ -7,7 +7,7 @@ Class {
 	#category : #'Finances-Core-Tests'
 }
 
-{ #category : #tests }
+{ #category : #'tests - creation' }
 LancamentoTest >> testa_criar_com_array_vazio [
 
 	self should: [ Lancamento newFor: #() ]
@@ -18,7 +18,7 @@ LancamentoTest >> testa_criar_com_array_vazio [
 		  ].
 ]
 
-{ #category : #tests }
+{ #category : #'tests - creation' }
 LancamentoTest >> testa_criar_com_campos_adequados [
 
 	| lancamento |
@@ -31,7 +31,7 @@ LancamentoTest >> testa_criar_com_campos_adequados [
 	
 ]
 
-{ #category : #tests }
+{ #category : #'tests - creation' }
 LancamentoTest >> testa_criar_com_campos_adequados_e_quantidade_negativa [
 
 	| lancamento |
@@ -44,7 +44,7 @@ LancamentoTest >> testa_criar_com_campos_adequados_e_quantidade_negativa [
 	
 ]
 
-{ #category : #tests }
+{ #category : #'tests - creation' }
 LancamentoTest >> testa_criar_com_campos_de_dados_invalidos [
 
 	self should: [ Lancamento newFor: #('BOVA11' 'data errada' 'qtd errada' 'valor errado') ]
@@ -57,7 +57,7 @@ LancamentoTest >> testa_criar_com_campos_de_dados_invalidos [
 		  ]
 ]
 
-{ #category : #tests }
+{ #category : #'tests - creation' }
 LancamentoTest >> testa_criar_com_menos_campos_do_que_esperado [
 
 	self should: [ Lancamento newFor: #('BOVA11') ]
@@ -68,7 +68,7 @@ LancamentoTest >> testa_criar_com_menos_campos_do_que_esperado [
 		  ]
 ]
 
-{ #category : #tests }
+{ #category : #'tests - creation' }
 LancamentoTest >> testa_criar_com_qtd_numerico_nulo [
 
 	self should: [ Lancamento newFor: #('BOVA11' '01/04/1984' '0' '1000') ]
@@ -79,7 +79,7 @@ LancamentoTest >> testa_criar_com_qtd_numerico_nulo [
 		  ]
 ]
 
-{ #category : #tests }
+{ #category : #'tests - creation' }
 LancamentoTest >> testa_criar_com_valor_numerico_negativo [
 
 	self should: [ Lancamento newFor: #('BOVA11' '01/04/1984' '100' '-1000') ]
@@ -88,4 +88,16 @@ LancamentoTest >> testa_criar_com_valor_numerico_negativo [
 		  		self assert: ex messageText
 					  equals: 'Validation failed with errors: O valor do lote não podeser igual negativo.'	
 		  ]
+]
+
+{ #category : #'tests - tipo' }
+LancamentoTest >> testa_tipo_lancamento_criado_com_ticker_de_acao [
+
+	| lancamento |
+	
+	lancamento := Lancamento newFor: #('BOVA11' '01/04/1984' '100' '1000').
+	
+	self assert: lancamento tipo equals: #Comprada.
+	
+	
 ]

@@ -4,8 +4,8 @@ Class {
 	#category : #'Finances-Core'
 }
 
-{ #category : #accessing }
-Posicoes >> ativaCompradaDoTicker: ticker [
+{ #category : #accessors }
+Posicoes >> ativaDoTicker: ticker eDoTipo: tipo [ 
 
 	^ self get: ticker 
 		    ifAbsentAdd: (Posicao newCompradaTicker: ticker) 

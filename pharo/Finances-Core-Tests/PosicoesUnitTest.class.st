@@ -20,13 +20,14 @@ PosicoesUnitTest >> testa_obter_posicao_existente_ativa_comprada [
 	
 	| posicao |
 	
-	posicao := posicoes ativaCompradaDoTicker: 'BOVA11'.
+	posicao := posicoes ativaDoTicker: 'BOVA11' eDoTipo: #Comprada.
 	
-	self assert: (posicoes ativaCompradaDoTicker: 'BOVA11') identicalTo: posicao .
+	self assert: (posicoes ativaDoTicker: 'BOVA11' eDoTipo: #Comprada) 
+		  identicalTo: posicao .
 ]
 
 { #category : #'tests - pos ativa' }
 PosicoesUnitTest >> testa_obter_posicao_inexistente_ativa_comprada [
 
-	self assert: (posicoes ativaCompradaDoTicker: 'BOVA11') operacoes isEmpty.
+	self assert: (posicoes ativaDoTicker: 'BOVA11' eDoTipo: #Comprada) operacoes isEmpty.
 ]
