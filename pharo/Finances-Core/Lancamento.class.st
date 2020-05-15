@@ -18,6 +18,12 @@ Lancamento class >> newFor: aCollection [
    ]) failOnCreationFailed.
 ]
 
+{ #category : #'instance creation' }
+Lancamento class >> ticker: ticker lote: lote data: data valor: valor [
+
+	^ super new ticker: ticker lote: lote data: data valor: valor.
+]
+
 { #category : #accessing }
 Lancamento >> data [
 	^ data
@@ -62,6 +68,17 @@ Lancamento >> quantidade [
 { #category : #accessing }
 Lancamento >> ticker [
 	^ ticker
+]
+
+{ #category : #'instance creation' }
+Lancamento >> ticker: umTicker lote: umLote data: umaData valor: umValor [
+
+	ticker := umTicker.
+	quantidade := umLote.
+	data := umaData.
+	valor := umValor.
+
+
 ]
 
 { #category : #accessors }

@@ -30,14 +30,14 @@ ComprarAcoesFeature >> Comprar_mais_acoes_ja_adquiridas_anteriormente [
 					  run: [ :qtdAtual :ticker :montanteAtual :loteAdicional 
 								:montanteAdicional :qtdAcoesAtualEsperado :novoValorMedio  | 
 			
-						| acao |
+						| posicao |
 						
-						acao := (posicoes ativaDoTicker: ticker eDoTipo: #Comprada) ativoFinanceiro.
-						acao comprar: qtdAtual em: DateAndTime today totalizando: montanteAtual;
-						     comprar: loteAdicional em: DateAndTime today totalizando: montanteAdicional.
+						posicao := (posicoes ativaDoTicker: ticker eDoTipo: #Comprada).
+						posicao aplica: (Lancamento ticker: ticker lote: qtdAtual data: DateAndTime today valor: montanteAtual);
+						     	  aplica: (Lancamento ticker: ticker lote: loteAdicional data: DateAndTime today valor: montanteAdicional).
 						
-						self assert: acao totalAcoes equals: qtdAcoesAtualEsperado.
-						self assert: acao valorMedio equals: novoValorMedio.
+						self assert: posicao ativoFinanceiro totalAcoes equals: qtdAcoesAtualEsperado.
+						self assert: posicao ativoFinanceiro valorMedio equals: novoValorMedio.
 					]
 ]
 
@@ -57,12 +57,12 @@ ComprarAcoesFeature >> Primeira_compra [
 							 - #(  10       10000           1000              1000  )
 							
 					  run: [ :lote :montante :ticker :valorAcaoOperacao :valorMedio | 
-						| operacao acao |
+						| operacao posicao |
 			
-						acao := (posicoes ativaDoTicker: ticker eDoTipo: #Comprada) ativoFinanceiro.
-						operacao := acao comprar: lote em: (Date readFrom: '12/01/2019' pattern: 'dd/mm/yyyy') totalizando: montante.
+						posicao := posicoes ativaDoTicker: ticker eDoTipo: #Comprada.
+						operacao := posicao aplica: (Lancamento ticker: ticker lote: lote data: (Date readFrom: '12/01/2019' pattern: 'dd/mm/yyyy') valor: montante).
 						self assert: operacao valorUnitarioAcao equals: valorAcaoOperacao.
-						self assert: acao valorMedio equals: valorMedio 
+						self assert: posicao ativoFinanceiro valorMedio equals: valorMedio 
 					]
 ]
 

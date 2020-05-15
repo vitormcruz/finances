@@ -11,7 +11,7 @@ Class {
 { #category : #'instance creation' }
 LancamentosCSVLoader class >> newFor: posicaoRepo [
 
-	^ super new posicaoes: posicaoRepo.
+	^ super new posicoes: posicaoRepo.
 ]
 
 { #category : #initialization }
@@ -40,7 +40,7 @@ LancamentosCSVLoader >> loadFromCsvFile: aCSVFileReference [
 ]
 
 { #category : #'as yet unclassified' }
-LancamentosCSVLoader >> posicaoes: posicaoRepo [
+LancamentosCSVLoader >> posicoes: posicaoRepo [
 
 	posicoes := posicaoRepo.
 ]
