@@ -22,3 +22,9 @@ Posicoes >> isEmpty [
 
 	self subclassResponsibility.
 ]
+
+{ #category : #accessing }
+Posicoes >> size [ 
+
+	self subclassResponsibility.
+]

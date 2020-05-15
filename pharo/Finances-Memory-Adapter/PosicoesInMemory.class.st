@@ -25,3 +25,9 @@ PosicoesInMemory >> isEmpty [
 
 	^ innerDictionary isEmpty.
 ]
+
+{ #category : #accessing }
+PosicoesInMemory >> size [
+
+	^ innerDictionary size.
+]

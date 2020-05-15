@@ -2,7 +2,8 @@ Class {
 	#name : #LancamentosCSVLoader,
 	#superclass : #LancamentosLoader,
 	#instVars : [
-		'neoCSVReader'
+		'neoCSVReader',
+		'posicoes'
 	],
 	#category : #'Finances-CSV-Adapter'
 }
@@ -10,15 +11,24 @@ Class {
 { #category : #initialization }
 LancamentosCSVLoader >> initialize [ 
 
-	neoCSVReader := NeoCSVReader new.
+	neoCSVReader := NeoCSVReader new separator: $;.
 ]
 
 { #category : #loading }
 LancamentosCSVLoader >> loadFromCsvFile: aCSVFileReference [ 
 
-	| lancamentos  |
+	<todo: 'adicionar validação linha por linha'>
+	<todo: 'adicionar validação do lançamento'>
 
-	lancamentos := (neoCSVReader clone on: aCSVFileReference readStream) upToEnd 
+	| posicao |
+	(((neoCSVReader clone on: aCSVFileReference readStream) 
+		skipHeader;
+		upToEnd)  collect: #asLancamento) do: [ :lancamento |
+						
+		posicao := posicoes ativaDoTicker: lancamento ticker eDoTipo: lancamento tipo.
+		posicao aplica: lancamento.					
+	]
+					
 		
 
 ]
