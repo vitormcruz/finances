@@ -44,7 +44,7 @@ PosicaoCompradaUnitTest >> testa_cria_posicao_comprada_de_acao [
 ]
 
 { #category : #'as yet unclassified' }
-PosicaoCompradaUnitTest >> testa_resultado_teorico [
+PosicaoCompradaUnitTest >> testa_total_investido_com_lancamentos_processados [
 
 	| posicao |
 
@@ -54,6 +54,18 @@ PosicaoCompradaUnitTest >> testa_resultado_teorico [
 	posicao aplica: (Lancamento newFor: #('BOVA11' '25/06/2020' '300' '2000')).
 	self assert: posicao totalInvestido
 		  equals: 4000
+	
+
+]
+
+{ #category : #'as yet unclassified' }
+PosicaoCompradaUnitTest >> testa_total_investido_sem_lancamentos_processados [
+
+	| posicao |
+
+	posicao := Posicao newCompradaTicker: 'BOVA11'.
+	self assert: posicao totalInvestido
+		  equals: 0
 	
 
 ]

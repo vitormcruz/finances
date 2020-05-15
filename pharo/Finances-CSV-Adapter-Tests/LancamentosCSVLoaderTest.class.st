@@ -31,13 +31,11 @@ LancamentosCSVLoaderTest >> setUp [
 { #category : #'as yet unclassified' }
 LancamentosCSVLoaderTest >> testa_carrega_de_arquivo_com_um_lancamento_compra_acao [
 
-	self skip: 'Implementando testes no Lancamento para atender a este teste que é mais genérico'.
-
 	lancamentosCSVLoader loadFromCsvFile: (testDir, '/UmLancamentoCompraAcao.csv') asFileReference.
 	
 	self assert: posicoes size equals: 1.
-	self assertCollection: (posicoes ativaDoTicker: 'ALUP11' eDoTipo: #Comprada) ativoFinanceiro operacoes asOperacaoStrings 
-		  equals: #('ALUP11_20/03/2015_213_3703.09') asOrderedCollection.
+	self assertCollection: (posicoes ativaDoTicker: 'ALUP11' eDoTipo: #Comprada) totalInvestido  
+		  equals: 3703.09.
 	
 
 	
