@@ -9,7 +9,7 @@ PosicaoCompradaUnitTest >> testa_aplica_novo_lancamento [
 
 	| posicao |
 
-	posicao := Posicao newCompradaTicker: 'BOVA11'.
+	posicao := PosicaoComprada newParaTicker: 'BOVA11'.
 	
 	(Lancamento newFor: #('BOVA11' '01/04/2020' '100' '1000')) meAplicaEm: posicao.
 		
@@ -24,7 +24,7 @@ PosicaoCompradaUnitTest >> testa_aplica_varios_lancamentos [
 
 	| posicao |
 
-	posicao := Posicao newCompradaTicker: 'BOVA11'.
+	posicao := PosicaoComprada newParaTicker:  'BOVA11'.
 	
 	(Lancamento newFor: #('BOVA11' '01/04/2020' '100' '1000')) meAplicaEm: posicao.
 	(Lancamento newFor: #('BOVA11' '10/05/2020' '200' '1000')) meAplicaEm: posicao.
@@ -42,7 +42,7 @@ PosicaoCompradaUnitTest >> testa_aplica_varios_lancamentos [
 PosicaoCompradaUnitTest >> testa_cria_posicao_comprada_de_acao [
 	| posicao |
 	
-	posicao := Posicao newCompradaTicker: 'BOVA11'.
+	posicao := PosicaoComprada newParaTicker: 'BOVA11'.
 	self assert: posicao tipoAtivo equals: #Acao.
 	self assert: posicao tipoPosicao equals: #Comprada.
 ]
@@ -52,7 +52,7 @@ PosicaoCompradaUnitTest >> testa_total_investido_com_lancamentos_processados [
 
 	| posicao |
 
-	posicao := Posicao newCompradaTicker: 'BOVA11'.
+	posicao := PosicaoComprada newParaTicker: 'BOVA11'.
 	
 	(Lancamento newFor: #('BOVA11' '01/04/2020' '100' '1000')) meAplicaEm: posicao.
 	(Lancamento newFor: #('BOVA11' '10/05/2020' '200' '1000')) meAplicaEm: posicao.
@@ -69,7 +69,7 @@ PosicaoCompradaUnitTest >> testa_total_investido_sem_lancamentos_processados [
 
 	| posicao |
 
-	posicao := Posicao newCompradaTicker: 'BOVA11'.
+	posicao := PosicaoComprada newParaTicker: 'BOVA11'.
 	self assert: posicao totalInvestido
 		  equals: 0
 	

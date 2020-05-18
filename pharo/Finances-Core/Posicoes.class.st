@@ -8,7 +8,7 @@ Class {
 Posicoes >> ativaDoTicker: ticker doTipo: tipo [ 
 
 	^ self get: ticker 
-		    ifAbsentAdd: (Posicao newCompradaTicker: ticker) 
+		    ifAbsentAdd: (tipo asPosicaoClass newParaTicker: ticker) 
 ]
 
 { #category : #adding }

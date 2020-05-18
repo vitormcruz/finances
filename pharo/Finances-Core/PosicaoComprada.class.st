@@ -4,19 +4,10 @@ Class {
 	#category : #'Finances-Core'
 }
 
-{ #category : #'instance creation' }
-PosicaoComprada class >> newParaTiker: aString [ 
+{ #category : #accessors }
+PosicaoComprada >> ticker: aString [ 
 
-	^ super new ticker: aString.
-
-]
-
-{ #category : #atualizacao }
-PosicaoComprada >> registra: aLancamento [ 
-
-	^ ativoFinanceiro comprar: aLancamento lote 
-			 			   em: aLancamento data 
-						   totalizando: aLancamento valor.
+	ativoFinanceiro := aString asAtivoFinanceiroComprado.			
 ]
 
 { #category : #accessors }

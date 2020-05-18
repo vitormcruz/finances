@@ -33,27 +33,27 @@ AcaoUnitTest >> testa_inicializar_acao_vendida [
 { #category : #'tests - get operacao' }
 AcaoUnitTest >> testa_obter_operacoes_por_ticker_inexistente [
 
-	self assert: (AcoesInMemory new acaoDoTicker: 'FAKE') operacoes isEmpty.
+	self assert: (PosicoesInMemory new ativaDoTicker: 'FAKE' doTipo: #Comprada) ativoFinanceiro operacoes isEmpty.
 ]
 
 { #category : #'tests - get operacao' }
 AcaoUnitTest >> testa_obter_operacoes_por_ticker_possuidor_N_operacoes [
-	| acoes operacoesIBOV3 data acao |
+	| posicoes operacoes data acao |
 	
-	acoes := AcoesInMemory new.
+	posicoes := PosicoesInMemory new.
 	data := Date today.
 	
-	acao := acoes acaoDoTicker: 'IBOV3'.
+	acao := (posicoes ativaDoTicker: 'BOVA11' doTipo: #Comprada) ativoFinanceiro.
 	
 	acao comprar: 200 em: data totalizando: 1000.
 	acao comprar: 100 em: (data + 1) asDate totalizando: 23456.
 	acao comprar: 1000 em: (data + 2) asDate totalizando: 100000.
 	
-	operacoesIBOV3 := acao operacoes collect: [ :op | 
+	operacoes := acao operacoes collect: [ :op | 
 		'{1} {2} {3}' format: {op lote. op data yyyymmdd. op total.}
 	].
 		
-	self assert: operacoesIBOV3 asSet equals: {'200 ', data yyyymmdd  , ' 1000'.
+	self assert: operacoes asSet equals: {'200 ', data yyyymmdd  , ' 1000'.
 												  		   '100 ', (data + 1) asDate yyyymmdd  , ' 23456'.
 												  		   '1000 ', (data + 2) asDate yyyymmdd  , ' 100000'.} asSet .
 
@@ -61,18 +61,18 @@ AcaoUnitTest >> testa_obter_operacoes_por_ticker_possuidor_N_operacoes [
 
 { #category : #'tests - get operacao' }
 AcaoUnitTest >> testa_obter_operacoes_por_ticker_possuidor_uma_operacao [
-	| acoes operacoesIBOV data operacaoObtida acao|
+	| posicoes operacoes data operacaoObtida acao|
 	
-	acoes := AcoesInMemory new.
+	posicoes := PosicoesInMemory new.
 	data := Date today.
 	
-	acao := acoes acaoDoTicker: 'IBOV3'.
+	acao := (posicoes ativaDoTicker: 'IBOV3' doTipo: #Comprada) ativoFinanceiro.
 	
 	acao comprar: 100 em: data totalizando: 1000.
-	operacoesIBOV := acao operacoes.
-	self assert: operacoesIBOV size equals: 1.
+	operacoes := acao operacoes.
+	self assert: operacoes size equals: 1.
 	
-	operacaoObtida := operacoesIBOV at: 1.
+	operacaoObtida := operacoes at: 1.
 	self assert: operacaoObtida lote equals: 100.
 	self assert: operacaoObtida data equals: data.
 	self assert: operacaoObtida total equals: 1000.
@@ -164,7 +164,7 @@ AcaoUnitTest >> testa_valorMedio_com_N_operacoes_positivas_sem_nunca_zerar_posic
 
 	| acao |
 	
-	acao := AcoesInMemory new acaoDoTicker: 'IBOV3'.
+	acao := (PosicoesInMemory new ativaDoTicker: 'BOVA11' doTipo: #Comprada) ativoFinanceiro.
 	acao comprar: 100 em: Date today totalizando: 1000.
 	acao comprar: 100 em: Date today totalizando: 2000.
 	acao comprar: 100 em: Date today totalizando: 3000.
@@ -176,13 +176,13 @@ AcaoUnitTest >> testa_valorMedio_com_N_operacoes_positivas_sem_nunca_zerar_posic
 { #category : #'tests - valor medio' }
 AcaoUnitTest >> testa_valorMedio_com_N_operacoes_zerarando_posicao [
 
-	| acao operacao |
+	| acao |
 	
-	acao := AcoesInMemory new acaoDoTicker: 'IBOV3'.
+	acao := (PosicoesInMemory new ativaDoTicker: 'BOVA11' doTipo: #Comprada) ativoFinanceiro.
 	acao comprar: 100 em: DateAndTime now totalizando: 1000.
 	acao comprar: 100 em: DateAndTime now totalizando: 1000.
 	acao comprar: 100 em: DateAndTime now totalizando: 1000.
-	operacao := acao vender: 300 em: DateAndTime now totalizando: 4000.
+	acao vender: 300 em: DateAndTime now totalizando: 4000.
 	self assert: acao valorMedio equals: 0.	
 
 ]
@@ -192,7 +192,7 @@ AcaoUnitTest >> testa_valorMedio_com_uma_operacao_compra [
 
 	| acao |
 	
-	acao := AcoesInMemory new acaoDoTicker: 'IBOV3'.
+	acao := (PosicoesInMemory new ativaDoTicker: 'BOVA11' doTipo: #Comprada) ativoFinanceiro.
 	acao comprar: 100 em: Date today totalizando: 1000.
 	self assert: acao valorMedio equals: 10
 	
@@ -204,7 +204,7 @@ AcaoUnitTest >> testa_valorMedio_com_uma_operacao_venda [
 
 	| acao |
 	
-	acao := AcoesInMemory new acaoDoTicker: 'IBOV3'.
+	acao := (PosicoesInMemory new ativaDoTicker: 'BOVA11' doTipo: #Vendida) ativoFinanceiro.
 	acao vender: 100 em: Date today totalizando: 1000.
 	self assert: acao valorMedio equals: 10
 	
@@ -216,7 +216,7 @@ AcaoUnitTest >> testa_valorMedio_sem_operacoes [
 
 	| acao |
 	
-	acao := AcoesInMemory new acaoDoTicker: 'IBOV3'.
+	acao := (PosicoesInMemory new ativaDoTicker: 'BOVA11' doTipo: #Comprada) ativoFinanceiro.
 	self assert: acao valorMedio equals: 0
 	
 

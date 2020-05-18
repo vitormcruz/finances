@@ -8,19 +8,15 @@ Class {
 }
 
 { #category : #'instance creation' }
-Posicao class >> newCompradaTicker: aString [ 
+Posicao class >> newParaTicker: aString [ 
 
-	^ PosicaoComprada newParaTiker: aString.
+	^ super new ticker: aString.
 ]
 
 { #category : #accessors }
 Posicao >> ativoFinanceiro [
 
 	^ ativoFinanceiro
-]
-
-{ #category : #initialization }
-Posicao >> initialize [ 
 ]
 
 { #category : #acessors }
@@ -32,7 +28,7 @@ Posicao >> operacoes [
 { #category : #accessors }
 Posicao >> ticker: aString [ 
 
-	ativoFinanceiro := aString asAtivoFinanceiroComprado.		
+	self subclassResponsibility.	
 ]
 
 { #category : #accessors }
