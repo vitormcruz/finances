@@ -13,12 +13,6 @@ Posicao class >> newCompradaTicker: aString [
 	^ PosicaoComprada newParaTiker: aString.
 ]
 
-{ #category : #atualizacao }
-Posicao >> aplica: aLancamento [ 
-
-	self subclassResponsibility.
-]
-
 { #category : #accessors }
 Posicao >> ativoFinanceiro [
 

@@ -2,7 +2,7 @@
 An AcoesTest is a test class for testing the behavior of Acoes
 "
 Class {
-	#name : #AcoesTest,
+	#name : #AcoesUnitTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'acoesFake'
@@ -11,14 +11,14 @@ Class {
 }
 
 { #category : #running }
-AcoesTest >> setUp [
+AcoesUnitTest >> setUp [
 
 	acoesFake := AcoesFake new.
 
 ]
 
 { #category : #'as yet unclassified' }
-AcoesTest >> testa_obter_acao_para_tiker_ja_obtido [
+AcoesUnitTest >> testa_obter_acao_para_tiker_ja_obtido [
 	
 	| bova11 |
 
@@ -28,7 +28,7 @@ AcoesTest >> testa_obter_acao_para_tiker_ja_obtido [
 ]
 
 { #category : #'as yet unclassified' }
-AcoesTest >> testa_obter_acao_para_tiker_nunca_obtido [
+AcoesUnitTest >> testa_obter_acao_para_tiker_nunca_obtido [
 
 	self assert: (acoesFake acaoDoTicker: 'BOVA11') operacoes isEmpty.
 ]

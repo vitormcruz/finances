@@ -32,9 +32,9 @@ ComprarAcoesFeature >> Comprar_mais_acoes_ja_adquiridas_anteriormente [
 			
 						| posicao |
 						
-						posicao := (posicoes ativaDoTicker: ticker eDoTipo: #Comprada).
-						posicao aplica: (Lancamento ticker: ticker lote: qtdAtual data: DateAndTime today valor: montanteAtual);
-						     	  aplica: (Lancamento ticker: ticker lote: loteAdicional data: DateAndTime today valor: montanteAdicional).
+						posicao := (posicoes ativaDoTicker: ticker doTipo: #Comprada).
+						(Lancamento ticker: ticker lote: qtdAtual data: DateAndTime today valor: montanteAtual) processaOperacoesPara: posicoes.
+						(Lancamento ticker: ticker lote: loteAdicional data: DateAndTime today valor: montanteAdicional) processaOperacoesPara: posicoes.
 						
 						self assert: posicao ativoFinanceiro totalAcoes equals: qtdAcoesAtualEsperado.
 						self assert: posicao ativoFinanceiro valorMedio equals: novoValorMedio.
@@ -59,8 +59,8 @@ ComprarAcoesFeature >> Primeira_compra [
 					  run: [ :lote :montante :ticker :valorAcaoOperacao :valorMedio | 
 						| operacao posicao |
 			
-						posicao := posicoes ativaDoTicker: ticker eDoTipo: #Comprada.
-						operacao := posicao aplica: (Lancamento ticker: ticker lote: lote data: (Date readFrom: '12/01/2019' pattern: 'dd/mm/yyyy') valor: montante).
+						posicao := posicoes ativaDoTicker: ticker doTipo: #Comprada.
+						operacao := (Lancamento ticker: ticker lote: lote data: (Date readFrom: '12/01/2019' pattern: 'dd/mm/yyyy') valor: montante) processaOperacoesPara: posicoes.
 						self assert: operacao valorUnitarioAcao equals: valorAcaoOperacao.
 						self assert: posicao ativoFinanceiro valorMedio equals: valorMedio 
 					]

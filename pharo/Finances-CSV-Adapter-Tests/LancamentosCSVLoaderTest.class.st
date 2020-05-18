@@ -34,7 +34,7 @@ LancamentosCSVLoaderTest >> testa_carrega_de_arquivo_com_um_lancamento_compra_ac
 	lancamentosCSVLoader loadFromCsvFile: (testDir, '/UmLancamentoCompraAcao.csv') asFileReference.
 	
 	self assert: posicoes size equals: 1.
-	self assertCollection: (posicoes ativaDoTicker: 'ALUP11' eDoTipo: #Comprada) totalInvestido  
+	self assertCollection: (posicoes ativaDoTicker: 'ALUP11' doTipo: #Comprada) totalInvestido  
 		  equals: 3703.09.
 	
 

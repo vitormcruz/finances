@@ -10,7 +10,9 @@ PosicaoCompradaUnitTest >> testa_aplica_novo_lancamento [
 	| posicao |
 
 	posicao := Posicao newCompradaTicker: 'BOVA11'.
-	posicao aplica: (Lancamento newFor: #('BOVA11' '01/04/2020' '100' '1000')).
+	
+	(Lancamento newFor: #('BOVA11' '01/04/2020' '100' '1000')) meAplicaEm: posicao.
+		
 	self assertCollection: posicao operacoes asOperacaoStrings 
 		  equals: #('1 April 2020,100,1000,,10') asOrderedCollection 
 	
@@ -23,9 +25,11 @@ PosicaoCompradaUnitTest >> testa_aplica_varios_lancamentos [
 	| posicao |
 
 	posicao := Posicao newCompradaTicker: 'BOVA11'.
-	posicao aplica: (Lancamento newFor: #('BOVA11' '01/04/2020' '100' '1000')).
-	posicao aplica: (Lancamento newFor: #('BOVA11' '10/05/2020' '200' '1000')).
-	posicao aplica: (Lancamento newFor: #('BOVA11' '25/06/2020' '300' '2400')).
+	
+	(Lancamento newFor: #('BOVA11' '01/04/2020' '100' '1000')) meAplicaEm: posicao.
+	(Lancamento newFor: #('BOVA11' '10/05/2020' '200' '1000')) meAplicaEm: posicao.
+	(Lancamento newFor: #('BOVA11' '25/06/2020' '300' '2400')) meAplicaEm: posicao.
+		
 	self assertCollection: posicao operacoes asOperacaoStrings 
 		  equals: #('1 April 2020,100,1000,,10'
 				      '10 May 2020,200,1000,,5'
@@ -49,9 +53,11 @@ PosicaoCompradaUnitTest >> testa_total_investido_com_lancamentos_processados [
 	| posicao |
 
 	posicao := Posicao newCompradaTicker: 'BOVA11'.
-	posicao aplica: (Lancamento newFor: #('BOVA11' '01/04/2020' '100' '1000')).
-	posicao aplica: (Lancamento newFor: #('BOVA11' '10/05/2020' '200' '1000')).
-	posicao aplica: (Lancamento newFor: #('BOVA11' '25/06/2020' '300' '2000')).
+	
+	(Lancamento newFor: #('BOVA11' '01/04/2020' '100' '1000')) meAplicaEm: posicao.
+	(Lancamento newFor: #('BOVA11' '10/05/2020' '200' '1000')) meAplicaEm: posicao.
+	(Lancamento newFor: #('BOVA11' '25/06/2020' '300' '2000')) meAplicaEm: posicao.
+		
 	self assert: posicao totalInvestido
 		  equals: 4000
 	

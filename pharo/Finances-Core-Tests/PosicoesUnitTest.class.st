@@ -15,19 +15,21 @@ PosicoesUnitTest >> setUp [
 
 ]
 
-{ #category : #'as yet unclassified' }
-PosicoesUnitTest >> testa_obter_posicao_existente_ativa_comprada [
-	
-	| posicao |
-	
-	posicao := posicoes ativaDoTicker: 'BOVA11' eDoTipo: #Comprada.
-	
-	self assert: (posicoes ativaDoTicker: 'BOVA11' eDoTipo: #Comprada) 
-		  identicalTo: posicao .
-]
-
 { #category : #'tests - pos ativa' }
 PosicoesUnitTest >> testa_obter_posicao_inexistente_ativa_comprada [
 
-	self assert: (posicoes ativaDoTicker: 'BOVA11' eDoTipo: #Comprada) operacoes isEmpty.
+	self assert: (posicoes ativaDoTicker: 'BOVA11' doTipo: #Comprada) operacoes isEmpty.
+]
+
+{ #category : #'tests - pos ativa' }
+PosicoesUnitTest >> testa_registra_lancamento_compra_ativo_nunca_usado [
+
+	| lancamentoTickerNuncaUsado | 
+
+	lancamentoTickerNuncaUsado := Lancamento ticker: 'ALUP11' lote: 100 data: (Date readFrom: '10/20/2019' readStream) valor: 1000.
+
+	lancamentoTickerNuncaUsado processaOperacoesPara: posicoes.
+	
+	self assertCollection: (posicoes ativaDoTicker: 'ALUP11' doTipo: #Comprada) operacoes asOperacaoStrings 
+		  equals: #('20 October 2019,100,1000,,10') asOrderedCollection.
 ]

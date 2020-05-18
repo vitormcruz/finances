@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #accessors }
-Posicoes >> ativaDoTicker: ticker eDoTipo: tipo [ 
+Posicoes >> ativaDoTicker: ticker doTipo: tipo [ 
 
 	^ self get: ticker 
 		    ifAbsentAdd: (Posicao newCompradaTicker: ticker) 
@@ -21,6 +21,18 @@ Posicoes >> get: aString ifAbsentAdd: umaAcao [
 Posicoes >> isEmpty [
 
 	self subclassResponsibility.
+]
+
+{ #category : #operacao }
+Posicoes >> registra: lancamento [ 
+
+	| posicao |
+
+	posicao := self ativaDoTicker: lancamento ticker 
+						 doTipo: lancamento tipo.
+						
+	
+	
 ]
 
 { #category : #accessing }

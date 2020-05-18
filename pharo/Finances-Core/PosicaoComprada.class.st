@@ -12,9 +12,9 @@ PosicaoComprada class >> newParaTiker: aString [
 ]
 
 { #category : #atualizacao }
-PosicaoComprada >> aplica: aLancamento [ 
+PosicaoComprada >> registra: aLancamento [ 
 
-	^ ativoFinanceiro comprar: aLancamento quantidade 
+	^ ativoFinanceiro comprar: aLancamento lote 
 			 			   em: aLancamento data 
 						   totalizando: aLancamento valor.
 ]

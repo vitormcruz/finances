@@ -30,9 +30,8 @@ LancamentosCSVLoader >> loadFromCsvFile: aCSVFileReference [
 	(((neoCSVReader clone on: aCSVFileReference readStream) 
 		skipHeader;
 		upToEnd)  collect: #asLancamento) do: [ :lancamento |
-						
-		posicao := posicoes ativaDoTicker: lancamento ticker eDoTipo: lancamento tipo.
-		posicao aplica: lancamento.					
+			
+			lancamento processaOperacoesPara: posicoes
 	]
 					
 		

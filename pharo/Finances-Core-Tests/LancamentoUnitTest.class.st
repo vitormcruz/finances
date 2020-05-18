@@ -2,13 +2,13 @@
 A LancamentoTest is a test class for testing the behavior of Lancamento
 "
 Class {
-	#name : #LancamentoTest,
+	#name : #LancamentoUnitTest,
 	#superclass : #TestCase,
 	#category : #'Finances-Core-Tests'
 }
 
 { #category : #'tests - creation' }
-LancamentoTest >> testa_criar_com_array_vazio [
+LancamentoUnitTest >> testa_criar_com_array_vazio [
 
 	self should: [ Lancamento newFor: #() ]
 		  raise: ValidationError 
@@ -19,33 +19,33 @@ LancamentoTest >> testa_criar_com_array_vazio [
 ]
 
 { #category : #'tests - creation' }
-LancamentoTest >> testa_criar_com_campos_adequados [
+LancamentoUnitTest >> testa_criar_com_campos_adequados [
 
 	| lancamento |
 	
 	lancamento := Lancamento newFor: #('BOVA11' '01/04/1984' '100' '1000').
 	self assert: lancamento ticker equals: 'BOVA11'.
 	self assert: lancamento data equals: (Date newDay: 1 month: 4 year: 1984).
-	self assert: lancamento quantidade equals: 100.
+	self assert: lancamento lote equals: 100.
 	self assert: lancamento valor equals: 1000.
 	
 ]
 
 { #category : #'tests - creation' }
-LancamentoTest >> testa_criar_com_campos_adequados_e_quantidade_negativa [
+LancamentoUnitTest >> testa_criar_com_campos_adequados_e_quantidade_negativa [
 
 	| lancamento |
 	
 	lancamento := Lancamento newFor: #('BOVA11' '01/04/1984' '-100' '1000').
 	self assert: lancamento ticker equals: 'BOVA11'.
 	self assert: lancamento data equals: (Date newDay: 1 month: 4 year: 1984).
-	self assert: lancamento quantidade equals: -100.
+	self assert: lancamento lote equals: -100.
 	self assert: lancamento valor equals: 1000.
 	
 ]
 
 { #category : #'tests - creation' }
-LancamentoTest >> testa_criar_com_campos_de_dados_invalidos [
+LancamentoUnitTest >> testa_criar_com_campos_de_dados_invalidos [
 
 	self should: [ Lancamento newFor: #('BOVA11' 'data errada' 'qtd errada' 'valor errado') ]
 		  raise: ValidationError 
@@ -58,7 +58,7 @@ LancamentoTest >> testa_criar_com_campos_de_dados_invalidos [
 ]
 
 { #category : #'tests - creation' }
-LancamentoTest >> testa_criar_com_menos_campos_do_que_esperado [
+LancamentoUnitTest >> testa_criar_com_menos_campos_do_que_esperado [
 
 	self should: [ Lancamento newFor: #('BOVA11') ]
 		  raise: ValidationError 
@@ -69,7 +69,7 @@ LancamentoTest >> testa_criar_com_menos_campos_do_que_esperado [
 ]
 
 { #category : #'tests - creation' }
-LancamentoTest >> testa_criar_com_qtd_numerico_nulo [
+LancamentoUnitTest >> testa_criar_com_qtd_numerico_nulo [
 
 	self should: [ Lancamento newFor: #('BOVA11' '01/04/1984' '0' '1000') ]
 		  raise: ValidationError 
@@ -80,18 +80,18 @@ LancamentoTest >> testa_criar_com_qtd_numerico_nulo [
 ]
 
 { #category : #'tests - creation' }
-LancamentoTest >> testa_criar_com_valor_numerico_negativo [
+LancamentoUnitTest >> testa_criar_com_valor_numerico_negativo [
 
 	self should: [ Lancamento newFor: #('BOVA11' '01/04/1984' '100' '-1000') ]
 		  raise: ValidationError 
 		  withExceptionDo: [ :ex | 
 		  		self assert: ex messageText
-					  equals: 'Validation failed with errors: O valor do lote não podeser igual negativo.'	
+					  equals: 'Validation failed with errors: O valor do lote não pode ser negativo.'	
 		  ]
 ]
 
 { #category : #'tests - tipo' }
-LancamentoTest >> testa_tipo_lancamento_criado_com_ticker_de_acao [
+LancamentoUnitTest >> testa_tipo_lancamento_criado_com_ticker_de_acao [
 
 	| lancamento |
 	
