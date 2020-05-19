@@ -55,6 +55,24 @@ LancamentosCSVLoaderTest >> testa_carrega_de_arquivo_com_varios_lancamento_compr
 ]
 
 { #category : #'as yet unclassified' }
+LancamentosCSVLoaderTest >> testa_carrega_de_arquivo_com_varios_lancamento_compra_de_varias_acoes [
+	| posicaoALUP11 posicaoVALE3 |
+	
+	lancamentosCSVLoader loadFromCsvFile: (testDir , '/VariosLancamentosCompraDeVariasAcoes.csv') asFileReference.
+
+	posicaoALUP11 := posicoes posicao: #Comprada doTicker: 'ALUP11'.
+	posicaoVALE3 := posicoes posicao: #Comprada doTicker: 'VALE3'.
+	
+	self assert: posicoes size equals: 2.
+	
+	self assert: posicaoALUP11 montanteTotal equals: 4900.45.
+	self assert: posicaoALUP11 totalAcoes  equals: 500.
+	
+	self assert: posicaoVALE3 montanteTotal equals: 11057.
+	self assert: posicaoVALE3 totalAcoes  equals: 320.
+]
+
+{ #category : #'as yet unclassified' }
 LancamentosCSVLoaderTest >> testa_carrega_de_arquivo_vazio [
 
 	lancamentosCSVLoader loadFromCsvFile: (testDir, '/ArquivoVazio.csv') asFileReference.
