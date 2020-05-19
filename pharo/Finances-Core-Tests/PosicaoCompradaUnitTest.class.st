@@ -123,7 +123,7 @@ PosicaoCompradaUnitTest >> testa_total_investido_com_lancamentos_processados [
 	(Lancamento newFor: #('BOVA11' '10/05/2020' '200' '1000')) aplicarEm: posicao.
 	(Lancamento newFor: #('BOVA11' '25/06/2020' '300' '2000')) aplicarEm: posicao.
 		
-	self assert: posicao totalInvestido
+	self assert: posicao montanteTotal 
 		  equals: 4000
 	
 
@@ -135,7 +135,7 @@ PosicaoCompradaUnitTest >> testa_total_investido_sem_lancamentos_processados [
 	| posicao |
 
 	posicao := PosicaoComprada newParaTicker: 'BOVA11'.
-	self assert: posicao totalInvestido
+	self assert: posicao montanteTotal
 		  equals: 0
 	
 

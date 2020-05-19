@@ -18,7 +18,7 @@ PosicoesUnitTest >> setUp [
 { #category : #'tests - pos ativa' }
 PosicoesUnitTest >> testa_obter_posicao_comprada_nunca_obtida [
 
-	self assert: (posicoes ativaDoTicker: 'BOVA11' doTipo: #Comprada) operacoes isEmpty.
+	self assert: (posicoes posicao: #Comprada doTicker: 'BOVA11') operacoes isEmpty.
 ]
 
 { #category : #'tests - pos ativa' }
@@ -30,6 +30,6 @@ PosicoesUnitTest >> testa_registra_lancamento_compra_ativo_nunca_usado [
 
 	lancamentoTickerNuncaUsado processaOperacoesPara: posicoes.
 	
-	self assertCollection: (posicoes ativaDoTicker: 'ALUP11' doTipo: #Comprada) operacoes asOperacaoStrings 
+	self assertCollection: (posicoes posicao: #Comprada doTicker: 'ALUP11') operacoes asOperacaoStrings 
 		  equals: #('20 October 2019,100,1000,,10') asOrderedCollection.
 ]

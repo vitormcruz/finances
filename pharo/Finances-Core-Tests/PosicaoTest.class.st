@@ -14,7 +14,7 @@ PosicaoTest >> testa_obter_operacoes_por_ticker_possuidor_N_operacoes [
 	posicoes := PosicoesInMemory new.
 	data := Date today.
 	
-	posicao := posicoes ativaDoTicker: 'BOVA11' doTipo: #Comprada.
+	posicao := posicoes posicao: #Comprada doTicker: 'BOVA11'.
 	
 	posicao comprar: 200 em: data totalizando: 1000.
 	posicao comprar: 100 em: (data + 1) asDate totalizando: 23456.
@@ -37,7 +37,7 @@ PosicaoTest >> testa_obter_operacoes_por_ticker_possuidor_uma_operacao [
 	posicoes := PosicoesInMemory new.
 	data := Date today.
 	
-	posicao := posicoes ativaDoTicker: 'IBOV3' doTipo: #Comprada.
+	posicao := posicoes posicao: #Comprada doTicker: 'IBOV3'.
 	
 	posicao comprar: 100 em: data totalizando: 1000.
 	operacoes := posicao operacoes.
@@ -62,7 +62,7 @@ PosicaoTest >> testa_valorMedio_com_N_operacoes_positivas_sem_nunca_zerar_posica
 
 	| posicao |
 	
-	posicao := PosicoesInMemory new ativaDoTicker: 'BOVA11' doTipo: #Comprada.
+	posicao := PosicoesInMemory new posicao: #Comprada doTicker: 'BOVA11'.
 	posicao comprar: 100 em: Date today totalizando: 1000.
 	posicao comprar: 100 em: Date today totalizando: 2000.
 	posicao comprar: 100 em: Date today totalizando: 3000.
@@ -76,7 +76,7 @@ PosicaoTest >> testa_valorMedio_com_N_operacoes_zerarando_posicao [
 
 	| posicao |
 	
-	posicao := PosicoesInMemory new ativaDoTicker: 'BOVA11' doTipo: #Comprada.
+	posicao := PosicoesInMemory new posicao: #Comprada doTicker: 'BOVA11'.
 	posicao comprar: 100 em: DateAndTime now totalizando: 1000.
 	posicao comprar: 100 em: DateAndTime now totalizando: 1000.
 	posicao comprar: 100 em: DateAndTime now totalizando: 1000.
@@ -90,7 +90,7 @@ PosicaoTest >> testa_valorMedio_com_uma_operacao_compra [
 
 	| posicao |
 	
-	posicao := PosicoesInMemory new ativaDoTicker: 'BOVA11' doTipo: #Comprada.
+	posicao := PosicoesInMemory new posicao: #Comprada doTicker: 'BOVA11'.
 	posicao comprar: 100 em: Date today totalizando: 1000.
 	self assert: posicao valorMedio equals: 10
 	
@@ -102,7 +102,7 @@ PosicaoTest >> testa_valorMedio_com_uma_operacao_venda [
 
 	| posicao |
 	
-	posicao := PosicoesInMemory new ativaDoTicker: 'BOVA11' doTipo: #Vendida.
+	posicao := PosicoesInMemory new posicao: #Vendida doTicker: 'BOVA11'.
 	posicao vender: 100 em: Date today totalizando: 1000.
 	self assert: posicao valorMedio equals: 10
 	
@@ -114,7 +114,7 @@ PosicaoTest >> testa_valorMedio_sem_operacoes [
 
 	| posicao |
 	
-	posicao := PosicoesInMemory new ativaDoTicker: 'BOVA11' doTipo: #Comprada.
+	posicao := PosicoesInMemory new posicao: #Comprada doTicker: 'BOVA11'.
 	self assert: posicao valorMedio equals: 0
 	
 

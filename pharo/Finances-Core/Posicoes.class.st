@@ -4,13 +4,6 @@ Class {
 	#category : #'Finances-Core'
 }
 
-{ #category : #accessors }
-Posicoes >> ativaDoTicker: ticker doTipo: tipo [ 
-
-	^ self get: ticker 
-		    ifAbsentAdd: (tipo asPosicaoClass newParaTicker: ticker) 
-]
-
 { #category : #adding }
 Posicoes >> get: aString ifAbsentAdd: umaAcao [ 
 
@@ -23,13 +16,20 @@ Posicoes >> isEmpty [
 	self subclassResponsibility.
 ]
 
+{ #category : #accessors }
+Posicoes >> posicao: tipo doTicker: ticker [ 
+
+	^ self get: ticker 
+		    ifAbsentAdd: (tipo asPosicaoClass newParaTicker: ticker) 
+]
+
 { #category : #operacao }
 Posicoes >> registra: lancamento [ 
 
 	| posicao |
 
-	posicao := self ativaDoTicker: lancamento ticker 
-						 doTipo: lancamento tipo.
+	posicao := self posicao: lancamento tipo 
+						 doTicker: lancamento ticker.
 						
 	
 	

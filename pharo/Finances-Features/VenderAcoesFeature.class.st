@@ -39,7 +39,7 @@ VenderAcoesFeature >> Liquidar_parcialmente_açoes_ja_adquiridas [
 						| posicao hoje operacao |
 						
 						hoje := DateAndTime now.
-						posicao := posicoes ativaDoTicker: ticker doTipo: #Comprada.
+						posicao := posicoes posicao: #Comprada doTicker: ticker .
 						posicao comprar: qtdAcoesCompradas 
 							  em: hoje - 90 days 
 							  totalizando: montante.
@@ -77,7 +77,7 @@ VenderAcoesFeature >> Liquidar_todas_as_açoes_adquiridas [
 						| posicao hoje operacao |
 						
 						hoje := DateAndTime now.
-						posicao := posicoes ativaDoTicker: ticker doTipo: #Comprada.
+						posicao := posicoes posicao: #Comprada doTicker: ticker.
 						posicao comprar: qtdAcoesCompradas 
 							  em: hoje - 90 days 
 							  totalizando: montante.

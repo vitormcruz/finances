@@ -32,7 +32,7 @@ ComprarAcoesFeature >> Comprar_mais_acoes_ja_adquiridas_anteriormente [
 			
 						| posicao |
 						
-						posicao := (posicoes ativaDoTicker: ticker doTipo: #Comprada).
+						posicao := (posicoes posicao: #Comprada doTicker: ticker).
 						(Lancamento ticker: ticker lote: qtdAtual data: DateAndTime today valor: montanteAtual) processaOperacoesPara: posicoes.
 						(Lancamento ticker: ticker lote: loteAdicional data: DateAndTime today valor: montanteAdicional) processaOperacoesPara: posicoes.
 						
@@ -59,7 +59,7 @@ ComprarAcoesFeature >> Primeira_compra [
 					  run: [ :lote :montante :ticker :valorAcaoOperacao :valorMedio | 
 						| operacao posicao |
 			
-						posicao := posicoes ativaDoTicker: ticker doTipo: #Comprada.
+						posicao := posicoes posicao: #Comprada doTicker: ticker.
 						
 						operacao := (Lancamento ticker: ticker 
 													   lote: lote 

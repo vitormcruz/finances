@@ -37,5 +37,5 @@ PosicaoVendida >> tipoPosicao [
 { #category : #'resultado financeiro' }
 PosicaoVendida >> totalInvestido [
 
-	^ ativoFinanceiro montanteTotal.
+	^ montanteTotal.
 ]

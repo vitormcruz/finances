@@ -91,7 +91,7 @@ Lancamento >> processaOperacoesPara: posicoes [
 
 	| posicao |
 
-	posicao := posicoes ativaDoTicker: self ticker doTipo: self tipo.
+	posicao := posicoes posicao: self tipo doTicker: self ticker.
 	^ self aplicarEm: posicao.
 	
 	
