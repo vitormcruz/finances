@@ -70,6 +70,12 @@ Lancamento class >> ticker: ticker lote: lote data: data valor: valor [
 	^ lancamentoClass new ticker: ticker lote: lote data: data valor: valor.
 ]
 
+{ #category : #processamento }
+Lancamento >> aplicarEm: posicao [
+
+	^ posicao comprar: lote em: data totalizando: valor.
+]
+
 { #category : #accessing }
 Lancamento >> data [
 	^ data
@@ -81,18 +87,12 @@ Lancamento >> lote [
 ]
 
 { #category : #processamento }
-Lancamento >> meAplicaEm: posicao [
-
-	^ posicao ativoFinanceiro comprar: lote em: data totalizando: valor.
-]
-
-{ #category : #processamento }
 Lancamento >> processaOperacoesPara: posicoes [
 
 	| posicao |
 
 	posicao := posicoes ativaDoTicker: self ticker doTipo: self tipo.
-	^ self meAplicaEm: posicao.
+	^ self aplicarEm: posicao.
 	
 	
 

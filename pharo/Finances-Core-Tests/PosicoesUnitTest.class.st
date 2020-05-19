@@ -16,7 +16,7 @@ PosicoesUnitTest >> setUp [
 ]
 
 { #category : #'tests - pos ativa' }
-PosicoesUnitTest >> testa_obter_posicao_inexistente_ativa_comprada [
+PosicoesUnitTest >> testa_obter_posicao_comprada_nunca_obtida [
 
 	self assert: (posicoes ativaDoTicker: 'BOVA11' doTipo: #Comprada) operacoes isEmpty.
 ]

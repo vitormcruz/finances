@@ -4,10 +4,28 @@ Class {
 	#category : #'Finances-Core'
 }
 
-{ #category : #accessors }
-PosicaoVendida >> ticker: aString [ 
+{ #category : #'operacao - calcular' }
+PosicaoVendida >> << umaOperacao [ 
 
-	ativoFinanceiro := aString asAtivoFinanceiroVendido.	
+	umaOperacao seCompra: [ ^ self realizaPosicao: umaOperacao ].
+	self incrementaPosicao: umaOperacao.
+	
+
+]
+
+{ #category : #'operacao - calcular' }
+PosicaoVendida >> incrementaPosicao: umaOperacao [ 
+
+	totalAcoes := totalAcoes + umaOperacao lote.
+	montanteTotal := montanteTotal - umaOperacao total.
+]
+
+{ #category : #'operacao - calcular' }
+PosicaoVendida >> realizaValor: valorRealizado [
+
+	montanteTotal := montanteTotal + valorRealizado.
+
+	
 ]
 
 { #category : #accessors }

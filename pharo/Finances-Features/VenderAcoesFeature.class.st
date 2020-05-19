@@ -36,22 +36,22 @@ VenderAcoesFeature >> Liquidar_parcialmente_açoes_ja_adquiridas [
 					  run: [ :qtdAcoesCompradas :ticker :montante :qtdVendida :valorVenda 
 								:qtdRemanescente :valorMedioEsperado :resultadoEmReais :montanteRemanescente | 
 			
-						| acao hoje operacao |
+						| posicao hoje operacao |
 						
 						hoje := DateAndTime now.
-						acao := (posicoes ativaDoTicker: ticker doTipo: #Comprada) ativoFinanceiro.
-						acao comprar: qtdAcoesCompradas 
+						posicao := posicoes ativaDoTicker: ticker doTipo: #Comprada.
+						posicao comprar: qtdAcoesCompradas 
 							  em: hoje - 90 days 
 							  totalizando: montante.
 						
-						operacao := acao vender: qtdVendida 
-							  			  	  em: DateAndTime now
-							  				  totalizando: valorVenda.
+						operacao := posicao vender: qtdVendida 
+							  			  	     em: DateAndTime now
+							  				     totalizando: valorVenda.
 						
-						self assert: acao totalAcoes equals: qtdRemanescente.
-						self assert: acao valorMedio equals: valorMedioEsperado.
+						self assert: posicao totalAcoes equals: qtdRemanescente.
+						self assert: posicao valorMedio equals: valorMedioEsperado.
 						self assert: operacao resultado equals: resultadoEmReais.
-						self assert: acao montanteTotal equals: montanteRemanescente.
+						self assert: posicao montanteTotal equals: montanteRemanescente.
 					]
 ]
 
@@ -74,20 +74,20 @@ VenderAcoesFeature >> Liquidar_todas_as_açoes_adquiridas [
 					  run: [ :qtdAcoesCompradas :ticker :montante :valorVenda :acoesRestantes 
 							   :novoValorMedio :resultadoEmReais | 
 			
-						| acao hoje operacao |
+						| posicao hoje operacao |
 						
 						hoje := DateAndTime now.
-						acao := (posicoes ativaDoTicker: ticker doTipo: #Comprada) ativoFinanceiro.
-						acao comprar: qtdAcoesCompradas 
+						posicao := posicoes ativaDoTicker: ticker doTipo: #Comprada.
+						posicao comprar: qtdAcoesCompradas 
 							  em: hoje - 90 days 
 							  totalizando: montante.
 						
-						operacao := acao vender: qtdAcoesCompradas 
+						operacao := posicao vender: qtdAcoesCompradas 
 							  			  	  em: DateAndTime now
 							  				  totalizando: valorVenda.
 						
-						self assert: acao totalAcoes equals: acoesRestantes.
-						self assert: acao valorMedio equals: novoValorMedio.
+						self assert: posicao totalAcoes equals: acoesRestantes.
+						self assert: posicao valorMedio equals: novoValorMedio.
 						self assert: operacao resultado equals: resultadoEmReais.
 					]
 ]

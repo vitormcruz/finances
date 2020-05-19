@@ -36,8 +36,8 @@ ComprarAcoesFeature >> Comprar_mais_acoes_ja_adquiridas_anteriormente [
 						(Lancamento ticker: ticker lote: qtdAtual data: DateAndTime today valor: montanteAtual) processaOperacoesPara: posicoes.
 						(Lancamento ticker: ticker lote: loteAdicional data: DateAndTime today valor: montanteAdicional) processaOperacoesPara: posicoes.
 						
-						self assert: posicao ativoFinanceiro totalAcoes equals: qtdAcoesAtualEsperado.
-						self assert: posicao ativoFinanceiro valorMedio equals: novoValorMedio.
+						self assert: posicao totalAcoes equals: qtdAcoesAtualEsperado.
+						self assert: posicao valorMedio equals: novoValorMedio.
 					]
 ]
 
@@ -60,9 +60,14 @@ ComprarAcoesFeature >> Primeira_compra [
 						| operacao posicao |
 			
 						posicao := posicoes ativaDoTicker: ticker doTipo: #Comprada.
-						operacao := (Lancamento ticker: ticker lote: lote data: (Date readFrom: '12/01/2019' pattern: 'dd/mm/yyyy') valor: montante) processaOperacoesPara: posicoes.
+						
+						operacao := (Lancamento ticker: ticker 
+													   lote: lote 
+													   data: (Date readFrom: '12/01/2019' pattern: 'dd/mm/yyyy') 
+													   valor: montante) processaOperacoesPara: posicoes.
+													
 						self assert: operacao valorUnitarioAcao equals: valorAcaoOperacao.
-						self assert: posicao ativoFinanceiro valorMedio equals: valorMedio 
+						self assert: posicao valorMedio equals: valorMedio 
 					]
 ]
 
