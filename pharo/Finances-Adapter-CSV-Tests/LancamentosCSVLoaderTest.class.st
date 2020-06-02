@@ -11,7 +11,7 @@ Class {
 	#classVars : [
 		'testDir'
 	],
-	#category : #'Finances-CSV-Adapter-Tests'
+	#category : #'Finances-Adapter-CSV-Tests'
 }
 
 { #category : #'private-initialization' }

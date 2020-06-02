@@ -5,7 +5,7 @@ Class {
 		'neoCSVReader',
 		'posicoes'
 	],
-	#category : #'Finances-CSV-Adapter'
+	#category : #'Finances-Adapter-CSV'
 }
 
 { #category : #'instance creation' }

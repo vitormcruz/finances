@@ -1,6 +1,6 @@
 Extension { #name : #Collection }
 
-{ #category : #'*Finances-CSV-Adapter-Tests' }
+{ #category : #'*Finances-Adapter-CSV-Tests' }
 Collection >> asLancamento [
 
 	^ Lancamento newFor: self.

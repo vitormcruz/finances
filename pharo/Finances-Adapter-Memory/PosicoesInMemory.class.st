@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'innerDictionary'
 	],
-	#category : #'Finances-Memory-Adapter'
+	#category : #'Finances-Adapter-Memory'
 }
 
 { #category : #adding }

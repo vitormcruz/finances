@@ -31,17 +31,19 @@ BaselineOfFinances >> baseline: spec [
 		
  	   baseline: 'SBDD' with: [ spec repository: 'gitlab://vitormcruz/sbdd:develop'; 
 											  loads: #(core) ];
-														
+										
 		package: 'Finances-Core' with: [spec requires: #('LangExtensions' 'ValidationNotification')];   
 		package: 'Finances-Core-Tests' with: [ spec requires: #('Finances-Core') ];   
-		package: 'Finances-Features' with: [ spec requires: #('Finances-Core' 'Finances-Memory-Adapter' 'SBDD') ];   
-		package: 'Finances-CSV-Adapter' with: [ spec requires: #('Finances-Core' 'NeoCSV') ];   
-		package: 'Finances-Memory-Adapter' with: [ spec requires: #('Finances-Core') ];   
-		package: 'Finances-CSV-Adapter-Tests' with: [ spec requires: #('Finances-CSV-Adapter' 'Finances-Memory-Adapter') ];   
+		package: 'Finances-Features' with: [ spec requires: #('Finances-Core' 'Finances-Adapter-Memory' 'SBDD') ];   
+		package: 'Finances-Adapter-CSV' with: [ spec requires: #('Finances-Core' 'NeoCSV') ];   
+		package: 'Finances-Adapter-Memory' with: [ spec requires: #('Finances-Core') ];   
+		package: 'Finances-Adapter-Spec2' with: [ spec requires: #('Finances-Core') ];   
+		package: 'Finances-Adapter-CSV-Tests' with: [ spec requires: #('Finances-Adapter-CSV' 'Finances-Adapter-Memory') ];   
+		package: 'Finances-App' with: [spec requires: #('Finances-Core')]; 
 		
-		group: 'default' with: #('core' 'tests' 'features' 'Roassal2' 'Finances-Memory-Adapter' 'Finances-CSV-Adapter');
-		group: 'core' with: #('Finances-Core');
-		group: 'tests' with: #(core 'Mocketry' 'Finances-Core-Tests' 'Finances-CSV-Adapter-Tests');			
+		group: 'default' with: #('core' 'tests' 'features' 'Roassal2' 'Finances-Adapter-Memory' 'Finances-Adapter-CSV' 'Finances-Adapter-Spec2');
+		group: 'core' with: #('Finances-Core' 'Finances-Adapter-CSV' );
+		group: 'tests' with: #(core 'Mocketry' 'Finances-Core-Tests' 'Finances-Adapter-CSV-Tests');			
 		group: 'features' with: #(core 'Finances-Features');		
 		group: 'external' with: #('Mocketry' 'Roassal2' 'NeoCSV' 'SBDD' 'LangExtensions' 'ValidationNotification')
 	].
